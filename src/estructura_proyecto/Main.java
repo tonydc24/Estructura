@@ -8,7 +8,7 @@ package estructura_proyecto;
  *
  * @author Tony
  */
-public class Estructura_Proyecto {
+public class Main {
 
     /**
      * @param args the command line arguments
