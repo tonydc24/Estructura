@@ -9,5 +9,7 @@ package estructura_proyecto;
  * @author Tony
  */
 public class Nodo {
-    
+ private Comida dato;
+ private Nodo next;
+ 
 }
