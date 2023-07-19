@@ -9,5 +9,9 @@ package estructura_proyecto;
  * @author Tony
  */
 public class Comida {
-    
+private int pan;
+private int Carne;
+private int Queso;
+private int lechuga;
+
 }
