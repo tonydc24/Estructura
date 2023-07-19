@@ -11,5 +11,26 @@ package estructura_proyecto;
 public class Nodo {
  private Comida dato;
  private Nodo next;
- 
+
+    public Nodo(Comida dato) {
+        this.dato = dato;
+        this.next = null;
+    }
+    
+    public Comida getDato() {
+        return dato;
+    }
+
+    public void setDato(Comida dato) {
+        this.dato = dato;
+    }
+
+    public Nodo getNext() {
+        return next;
+    }
+
+    public void setNext(Nodo next) {
+        this.next = next;
+    }
+    
 }
