@@ -8,6 +8,6 @@ package hilo;
  *
  * @author Tony
  */
-public class Hilo {
+public class Hilo extends Thread {
     
 }
