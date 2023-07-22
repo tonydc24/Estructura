@@ -4,10 +4,12 @@
  */
 package interfaz;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author antho
  */
-public class Window {
+public class Window extends JFrame {
     
 }
