@@ -11,5 +11,5 @@ import javax.swing.JFrame;
  * @author antho
  */
 public class Window extends JFrame {
-    
+   
 }
