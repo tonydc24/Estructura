@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import java.awt.Canvas;
 import javax.swing.JFrame;
 
 /**
@@ -12,4 +13,20 @@ import javax.swing.JFrame;
  */
 public class Window extends JFrame {
    
+    public static final int width = 800, height = 600;
+    private Canvas canvas;
+    public Window() {
+        setTitle("Juego");
+        setSize(width, height);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new Window();
+
+    }
 }
