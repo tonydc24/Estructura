@@ -76,7 +76,7 @@ public class Window extends JFrame implements Runnable {
         
         g.setColor(Color.black);
         
-        g.drawString(""+avFps, 100, 100);
+        g.drawString(""+avFps, 4, 13);
 
         //
         g.dispose();
@@ -99,8 +99,9 @@ public class Window extends JFrame implements Runnable {
             if (delta >= 1) {
                 update();
                 draw();
-                delta--;
+                delta--;            
                 frames++;
+                
             }
             if (time >= 1000000000) {
                 avFps = frames;
