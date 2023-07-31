@@ -123,9 +123,8 @@ public class Window extends JFrame implements Runnable {
         try {
             thread.join();
             running = false;//Cierra el booleano para cerrar el juego
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Window.class.getName()).log(Level.SEVERE,
-                    null, ex);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -15,12 +15,12 @@ public class Loader {
 
     public static BufferedImage imageLoader(String path) {
         try {
-           return ImageIO.read(Loader.class.getResource(path));
-        } catch (IOException ex) {
-            Logger.getLogger(Loader.class.getName()).log(Level.SEVERE,
-                    null, ex);
+            return ImageIO.read(Loader.class.getResource(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
-           return null;
+        return null;
     }
 
 }
