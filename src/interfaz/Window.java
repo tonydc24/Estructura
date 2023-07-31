@@ -82,7 +82,7 @@ public class Window extends JFrame implements Runnable {
         g.setColor(Color.black);
 
         g.fillRect(0, 0, width, height);
-        
+       
         gameS.draw(g);
       
         g.setColor(Color.white);

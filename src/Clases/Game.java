@@ -12,7 +12,7 @@ import java.awt.Graphics;
 public class Game {
     private Player player;
     public Game(){
-        player=new Player(new Vector2D(100,470),Texturas.player);
+        player=new Player(new Vector2D(200,200),Texturas.player);
     }
     public void update(){
         player.update();
