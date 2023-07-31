@@ -12,7 +12,7 @@ public class Player {
     
     public static void init(){
     
-        player = Loader.imageLoader("H:\\PROJECTS\\Estructura\\Estructura_Proyecto\\src\\Assets\\front.png");
+        player = Loader.imageLoader("Source Packages/Assets/front.png");
         
     }
 }
