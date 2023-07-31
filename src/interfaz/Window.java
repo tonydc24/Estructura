@@ -79,7 +79,7 @@ public class Window extends JFrame implements Runnable {
         }
         g = bs.getDrawGraphics();
         //
-        g.setColor(Color.black);
+        g.setColor(Color.green);
 
         g.fillRect(0, 0, width, height);
        
