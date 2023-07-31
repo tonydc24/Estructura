@@ -4,6 +4,8 @@
  */
 package estructura_proyecto;
 
+import Clases.Comida;
+
 /**
  *
  * @author Tony

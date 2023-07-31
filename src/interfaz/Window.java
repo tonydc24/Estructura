@@ -4,7 +4,9 @@
  */
 package interfaz;
 
-import estructura_proyecto.Player;
+import Clases.Game;
+import Clases.Comida;
+import Clases.Player;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,8 +32,8 @@ public class Window extends JFrame implements Runnable {
     private double targetTime = 1000000000 / fps;    //Estas variables me permiten 
     private double delta = 0;                     //controlar los fps del juego
     private int avFps = fps;
-
     //
+    private Game game;
     public Window() {
         setTitle("Juego");
         setSize(width, height);
@@ -57,7 +59,7 @@ public class Window extends JFrame implements Runnable {
     }
 
     private void update() {//Actualiza mi juego
-    
+        game.update();
     }
 
     private void draw() {//Inseta items en mi juego
@@ -74,7 +76,8 @@ public class Window extends JFrame implements Runnable {
 
         g.fillRect(0, 0, width, height);
         
-        g.drawImage(Player.player, 100, 100, null);
+        game.draw(g);
+      
         g.setColor(Color.white);
         g.drawString("" + avFps, 4, 13);
 
@@ -86,6 +89,8 @@ public class Window extends JFrame implements Runnable {
     private void init() {
 
         Player.init();
+        Comida.init();
+        game=new Game();
     
     }
 
