@@ -15,6 +15,7 @@ public class Game {
         player=new Player(new Vector2D(100,470),Texturas.player);
     }
     public void update(){
+        player.update();
     
     
     }

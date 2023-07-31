@@ -8,6 +8,7 @@ import Clases.Game;
 import Clases.Comida;
 import Clases.Player;
 import graphics.Texturas;
+import input.Keyboard;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -35,6 +36,7 @@ public class Window extends JFrame implements Runnable {
     private int avFps = fps;
     //
     private Game gameS;
+    private Keyboard keyBoard;
     public Window() {
         setTitle("Juego");
         setSize(width, height);
@@ -46,12 +48,15 @@ public class Window extends JFrame implements Runnable {
         setVisible(true);
 
         canvas = new Canvas();
+        keyBoard = new Keyboard();
+        
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(true);
 
         add(canvas);
+        canvas.addKeyListener(keyBoard);
     }
 
     public static void main(String[] args) {
@@ -60,6 +65,7 @@ public class Window extends JFrame implements Runnable {
     }
 
     private void update() {//Actualiza mi juego
+        keyBoard.update();
         gameS.update();
     }
 
