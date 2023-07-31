@@ -4,19 +4,21 @@
  */
 package Clases;
 
+import Math.Vector2D;
+import graphics.Texturas;
 import java.awt.Graphics;
 
-/**
- *
- * @author Anthony
- */
+//Clase que inicia los objetos en pantalla
 public class Game {
-    public Game(){}
+    private Player player;
+    public Game(){
+        player=new Player(new Vector2D(100,470),Texturas.player);
+    }
     public void update(){
     
     
     }
     public void draw(Graphics g){
-        
+        player.draw(g);
     }
 }

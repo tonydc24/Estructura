@@ -4,15 +4,26 @@
  */
 package Clases;
 
+import Math.Vector2D;
 import java.awt.image.BufferedImage;
 import graphics.Loader;
+import java.awt.Graphics;
+//Clase hija de la clase Objetos
+public class Player extends Objetos {
 
-public class Player {
-    public static BufferedImage player;
-    
-    public static void init(){
-    
-        player = Loader.imageLoader("Assets/front.png");
-        
+    public Player(Vector2D position, BufferedImage textura) {
+        super(position, textura);
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        g.drawImage(textura, (int) position.getX(), (int) position.getY(),
+                null);
+
     }
 }
