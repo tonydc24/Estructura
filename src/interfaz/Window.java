@@ -4,13 +4,12 @@
  */
 package interfaz;
 
+import estructura_proyecto.Player;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -56,10 +55,9 @@ public class Window extends JFrame implements Runnable {
         new Window().start();
 
     }
-    int x = 0;
 
     private void update() {//Actualiza mi juego
-        x++;
+    
     }
 
     private void draw() {//Inseta items en mi juego
@@ -72,15 +70,23 @@ public class Window extends JFrame implements Runnable {
         }
         g = bs.getDrawGraphics();
         //
-        g.clearRect(0, 0, width, height);
-        
         g.setColor(Color.black);
+
+        g.fillRect(0, 0, width, height);
         
-        g.drawString(""+avFps, 4, 13);
+        g.drawImage(Player.player, 100, 100, null);
+        g.setColor(Color.white);
+        g.drawString("" + avFps, 4, 13);
 
         //
         g.dispose();
         bs.show();
+    }
+
+    private void init() {
+
+        Player.init();
+    
     }
 
     @Override
@@ -90,6 +96,8 @@ public class Window extends JFrame implements Runnable {
         long lastTime = System.nanoTime();
         int frames = 0;
         long time = 0;
+        
+        init();
         while (running) {
             now = System.nanoTime();
             delta += (now - lastTime) / targetTime;

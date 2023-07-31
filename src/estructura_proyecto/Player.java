@@ -5,14 +5,14 @@
 package estructura_proyecto;
 
 import java.awt.image.BufferedImage;
-import loader.Loader;
+import graphics.Loader;
 
 public class Player {
     public static BufferedImage player;
     
     public static void init(){
     
-        player = Loader.imageLoader("/src/assets/Front.png");
+        player = Loader.imageLoader("H:\\PROJECTS\\Estructura\\Estructura_Proyecto\\src\\Assets\\front.png");
         
     }
 }
