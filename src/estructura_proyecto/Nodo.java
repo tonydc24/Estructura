@@ -4,26 +4,27 @@
  */
 package estructura_proyecto;
 
-import Clases.Comida;
+import Clases.Ingrediente;
 
 /**
  *
  * @author Tony
  */
 public class Nodo {
- private Comida dato;
- private Nodo next;
 
-    public Nodo(Comida dato) {
+    private Ingrediente dato;
+    private Nodo next;
+
+    public Nodo(Ingrediente dato) {
         this.dato = dato;
         this.next = null;
     }
-    
-    public Comida getDato() {
+
+    public Ingrediente getDato() {
         return dato;
     }
 
-    public void setDato(Comida dato) {
+    public void setDato(Ingrediente dato) {
         this.dato = dato;
     }
 
@@ -34,5 +35,4 @@ public class Nodo {
     public void setNext(Nodo next) {
         this.next = next;
     }
-    
 }
