@@ -11,9 +11,9 @@ package Clases;
 public class HamburguesaClasica extends Hamburguesa {
     public HamburguesaClasica() {
         super("Hamburguesa clasica");
-        agregarIngrediente(new Ingrediente(1, "Pan"));
-        agregarIngrediente(new Ingrediente(2, "Carne"));
-        agregarIngrediente(new Ingrediente(3, "Queso"));
-        agregarIngrediente(new Ingrediente(4, "Lechuga"));
+//        agregarIngrediente(new Ingrediente(1, "Pan"));
+//        agregarIngrediente(new Ingrediente(2, "Carne"));
+//        agregarIngrediente(new Ingrediente(3, "Queso"));
+//        agregarIngrediente(new Ingrediente(4, "Lechuga"));
     }
 }

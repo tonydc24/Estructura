@@ -22,11 +22,7 @@ public class Comida {
         this.lechuga = lechuga;
     }
 
-    public static void init() {
-
-        lechugaI = Loader.imageLoader("Assets/lechuga.png");
-
-    }
+    
 
     public int getPan() {
         return pan;

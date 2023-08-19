@@ -4,17 +4,20 @@
  */
 package Clases;
 
+import Math.Vector2D;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author Usuario
  */
-public class Ingrediente {
+public class Ingrediente extends Objetos {
     private int id;
     private String nombre;
 
-    public Ingrediente(int id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+    public Ingrediente(Vector2D position , BufferedImage textura) {
+        super   (position , textura);
     }
     
     public int getId() {
@@ -30,7 +33,12 @@ public class Ingrediente {
     }
 
     @Override
-    public String toString() {
-        return nombre;
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

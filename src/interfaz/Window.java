@@ -40,7 +40,7 @@ public class Window extends JFrame implements Runnable {
     private Keyboard keyBoard;
     private Sound background;
     public Window() {
-        background = new Sound(AssetsG.backgroundMusic);
+      
         setTitle("Juego");
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +60,8 @@ public class Window extends JFrame implements Runnable {
 
         add(canvas);
         canvas.addKeyListener(keyBoard);
-        background.play();
+//        background = new Sound(AssetsG.backgroundMusic);
+//        background.play();
     }
 
     public static void main(String[] args) {
@@ -87,12 +88,14 @@ public class Window extends JFrame implements Runnable {
         g = bs.getDrawGraphics();
         //
         g.setColor(Color.black);
-
+        
         g.fillRect(0, 0, width, height);
-       
+        g.drawImage(AssetsG.fondo, 0, 0, null);
+        g.drawImage(AssetsG.trash, 610, 440, null);
+        g.drawImage(AssetsG.lechuga, 400, 200, null);
         gameS.draw(g);//Dibujo los items en pantalla
-//        g.drawImage(Texturas.fondo, 0, 0, null);
-        g.setColor(Color.white);
+
+        g.setColor(Color.black);
         g.drawString("" + avFps, 4, 13);
 
         //
