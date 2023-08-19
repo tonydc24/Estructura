@@ -6,51 +6,37 @@ package estructura_proyecto;
 
 import Clases.Ingrediente;
 
-/**
- *
- * @author Tony
- */
-public class Lista {
-    private Nodo cabeza;
+public class ListaIngredientes {
+    private NodoIngrediente cabeza;
+    private int largo;
+    
+    public ListaIngredientes(){
+        this.cabeza = null;
+        this.largo = 0;
+    }
 
-    public void inserta(Ingrediente ficha) {
+    public void inserta(Ingrediente ingrediente) {
         if (cabeza == null) {
-            cabeza = new Nodo(ficha);
-        } else if (ficha.getId() < cabeza.getDato().getId()) {
-            Nodo aux = new Nodo(ficha);
+            cabeza = new NodoIngrediente(ingrediente);
+        } else if (ingrediente.getId() < cabeza.getDato().getId()) {
+            NodoIngrediente aux = new NodoIngrediente(ingrediente);
             aux.setNext(cabeza);
             cabeza = aux;
         } else if (cabeza.getNext() == null) {
-            cabeza.setNext(new Nodo(ficha));
+            cabeza.setNext(new NodoIngrediente(ingrediente));
         } else {
-            Nodo aux = cabeza;
+            NodoIngrediente aux = cabeza;
             while (aux.getNext() != null
                     && aux.getNext().getDato().getId()
-                    < ficha.getId()) {
+                    < ingrediente.getId()) {
                 aux = aux.getNext();
             }
-            Nodo temp = new Nodo(ficha);
+            NodoIngrediente temp = new NodoIngrediente(ingrediente);
             temp.setNext(aux.getNext());
             aux.setNext(temp);
         }
+        largo++;
     }
-
-//    public Ingrediente adivinarElementoFaltante() {
-//        Nodo aux = cabeza;
-//        int valor = cabeza.getDato().getId();
-//        while (aux.getNext() != cabeza && aux.getNext() != null) {
-//            if (aux.getNext().getDato().getId() != valor + 1) {
-//                int nuevoValor = valor + 1;
-//                String valorStr = nuevoValor + "";
-//                return new Ingrediente(nuevoValor, valorStr);
-//            }
-//            valor = aux.getNext().getDato().getId();
-//            aux = aux.getNext();
-//        }
-//        int nuevoValor = valor + 1;
-//        String valorStr = nuevoValor + "";
-//        return new Ingrediente(nuevoValor, valorStr);
-//    }
 
     public boolean existe(int id) {
         boolean esta = false;
@@ -58,7 +44,7 @@ public class Lista {
         //en la lista
         if (cabeza != null) {
             //Si hay algo en la lista buscaré
-            Nodo aux = cabeza;
+            NodoIngrediente aux = cabeza;
             //utilizo aux como indice
 
             //Mientras no se acabe la lista y el elemento
@@ -73,12 +59,26 @@ public class Lista {
 
         return esta;
     }
+    
+    public boolean existe(String nombre) {
+        boolean esta = false;
+        if (cabeza != null) {
+            NodoIngrediente aux = cabeza;
+            while (aux != null && !aux.getDato().getNombre().equals(nombre)) {
+                aux = aux.getNext();
+            }
+            
+            esta = (aux != null && aux.getDato().getNombre().equals(nombre));
+        }
+
+        return esta;
+    }
 
     public void modifica(Ingrediente ficha) {
         //busca a si existe alguien con el id, y le actualiza el nombre
         if (cabeza != null) {
             //Si hay algo en la lista buscaré
-            Nodo aux = cabeza; //utilizo aux como indice
+            NodoIngrediente aux = cabeza; //utilizo aux como indice
             //Mientras no se acabe la lista y el elemento
             //de la lista sea menor que el buscado
             while (aux != null && aux.getDato().getId() < ficha.getId()) {
@@ -98,7 +98,7 @@ public class Lista {
             if (cabeza.getDato().getId() == ingrediente.getId()) {
                 cabeza = cabeza.getNext();
             } else {
-                Nodo aux = cabeza; //utilizo aux como indice
+                NodoIngrediente aux = cabeza; //utilizo aux como indice
                 //Mientras no se acabe la lista y el elemento
                 //de la lista sea menor que el buscado
                 while (aux.getNext() != null
@@ -113,6 +113,7 @@ public class Lista {
                     aux.setNext(aux.getNext().getNext()); //cambio las referencias
                 }
             }
+            largo--;
         }
     }
 
@@ -121,9 +122,10 @@ public class Lista {
         //si una persona tiene el id, lo extrae (eliminando y retornando)
         if (cabeza != null) { //Si hay algo en la lista buscaré
             if (cabeza.getDato().getId() == id) {
+                ficha = cabeza.getDato();
                 cabeza = cabeza.getNext();
             } else {
-                Nodo aux = cabeza; //utilizo aux como indice
+                NodoIngrediente aux = cabeza; //utilizo aux como indice
                 //Mientras no se acabe la lista y el elemento
                 //de la lista sea menor que el buscado
                 while (aux.getNext() != null && aux.getNext().getDato().getId()
@@ -138,18 +140,36 @@ public class Lista {
                     aux.setNext(aux.getNext().getNext());//cambio las referencias
                 }
             }
+            largo--;
         }
         return ficha;
+    }
+    
+    public Ingrediente get(int id) {
+        Ingrediente ingrediente = null;
+        NodoIngrediente nodoActual = cabeza;
+        while (nodoActual != null) {
+            if (nodoActual.getDato().getId() == id) {
+                ingrediente = nodoActual.getDato();
+                return ingrediente;
+            }
+            nodoActual = nodoActual.getNext();
+        }
+        return ingrediente;
+    }
+    
+    public int largo(){
+        return this.largo;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Nodo aux = cabeza;
+        NodoIngrediente aux = cabeza;
         while (aux != null) {
             sb.append(aux.getDato());
-            sb.append(',');
             aux = aux.getNext();
+            if(aux != null) sb.append(',');
         }
         return sb.toString();
     }

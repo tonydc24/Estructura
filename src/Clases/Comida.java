@@ -7,25 +7,25 @@ package Clases;
 import graphics.Loader;
 import java.awt.image.BufferedImage;
 
-
 public class Comida {
-private int pan;
-private int Carne;
-private int Queso;
-private int lechuga;
-public static BufferedImage lechugaI;
 
-    
+    private int pan;
+    private int Carne;
+    private int Queso;
+    private int lechuga;
+    public static BufferedImage lechugaI;
+
     public Comida(int pan, int Carne, int Queso, int lechuga) {
         this.pan = pan;
         this.Carne = Carne;
         this.Queso = Queso;
         this.lechuga = lechuga;
     }
-    public static void init(){
-    
+
+    public static void init() {
+
         lechugaI = Loader.imageLoader("Assets/lechuga.png");
-        
+
     }
 
     public int getPan() {
@@ -59,5 +59,5 @@ public static BufferedImage lechugaI;
     public void setLechuga(int lechuga) {
         this.lechuga = lechuga;
     }
-    
+
 }

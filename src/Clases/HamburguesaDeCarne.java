@@ -10,7 +10,7 @@ package Clases;
  */
 public class HamburguesaDeCarne extends Hamburguesa {
     public HamburguesaDeCarne() {
-        super("Res");
+        super("Hamburguesa de carne");
         agregarIngrediente(new Ingrediente(1, "Pan"));
         agregarIngrediente(new Ingrediente(2, "Carne"));
     }

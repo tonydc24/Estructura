@@ -4,19 +4,19 @@
  */
 package Clases;
 
-import estructura_proyecto.Lista;
+import estructura_proyecto.ListaIngredientes;
 
 /**
  *
  * @author Usuario
  */
 public class Hamburguesa {
-    private String tipoCarne;
-    private Lista ingredientes;
+    private String descripcion;
+    private ListaIngredientes ingredientes;
 
-    public Hamburguesa(String tipoCarne) {
-        this.tipoCarne = tipoCarne;
-        this.ingredientes = new Lista();
+    public Hamburguesa(String descripcion) {
+        this.descripcion = descripcion;
+        this.ingredientes = new ListaIngredientes();
     }
 
     public void agregarIngrediente(Ingrediente ingrediente) {
@@ -27,18 +27,18 @@ public class Hamburguesa {
         ingredientes.elimina(ingrediente);
     }
 
-    public Lista getIngredientes() {
+    public ListaIngredientes getIngredientes() {
         return ingredientes;
     }
     
-    public String getTipoCarne() {
-        return tipoCarne;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Hamburguesa de ").append(tipoCarne).append(" con ingredientes: ");
+        sb.append(descripcion).append(" con ingredientes: ");
         sb.append(ingredientes.toString());
         return sb.toString();
     }
