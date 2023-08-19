@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 
 public class Loader {
@@ -19,6 +21,16 @@ public class Loader {
         } catch (IOException e) {
             e.printStackTrace();
 
+        }
+        return null;
+    }
+
+    public static Clip loadSound(String path) {
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(Loader.class.getResource(path)));
+            return clip;
+        } catch (Exception e) {
         }
         return null;
     }

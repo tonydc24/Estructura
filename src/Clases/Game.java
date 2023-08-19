@@ -5,14 +5,14 @@
 package Clases;
 
 import Math.Vector2D;
-import graphics.Texturas;
+import graphics.AssetsG;
 import java.awt.Graphics;
 
-//Clase que inicia los objetos en pantalla
+//Clase que inicia los objetos en pantalla , ejemplo el player y los actualiza tambien
 public class Game {
     private Player player;
     public Game(){
-        player=new Player(new Vector2D(200,200),Texturas.player);
+        player=new Player(new Vector2D(200,200),AssetsG.player);
     }
     public void update(){
         player.update();

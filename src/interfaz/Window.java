@@ -7,7 +7,8 @@ package interfaz;
 import Clases.Game;
 import Clases.Comida;
 import Clases.Player;
-import graphics.Texturas;
+import graphics.AssetsG;
+import graphics.Sound;
 import input.Keyboard;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -37,7 +38,9 @@ public class Window extends JFrame implements Runnable {
     //
     private Game gameS;
     private Keyboard keyBoard;
+    private Sound background;
     public Window() {
+        background = new Sound(AssetsG.backgroundMusic);
         setTitle("Juego");
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,16 +60,20 @@ public class Window extends JFrame implements Runnable {
 
         add(canvas);
         canvas.addKeyListener(keyBoard);
+        background.play();
     }
 
     public static void main(String[] args) {
         new Window().start();
-
+        
     }
 
     private void update() {//Actualiza mi juego
         keyBoard.update();
+        //Actualiza/recibe los datos del teclado ejemplo el WASD
         gameS.update();
+        //Actualiza el juego , ejemplo cuando se mueve el player
+        //o se mueve algun objeto en la banda transportadora
     }
 
     private void draw() {//Inseta items en mi juego
@@ -79,12 +86,12 @@ public class Window extends JFrame implements Runnable {
         }
         g = bs.getDrawGraphics();
         //
-        g.setColor(Color.green);
+        g.setColor(Color.black);
 
         g.fillRect(0, 0, width, height);
        
-        gameS.draw(g);
-      
+        gameS.draw(g);//Dibujo los items en pantalla
+//        g.drawImage(Texturas.fondo, 0, 0, null);
         g.setColor(Color.white);
         g.drawString("" + avFps, 4, 13);
 
@@ -95,14 +102,14 @@ public class Window extends JFrame implements Runnable {
 
     private void init() {
 
-        Texturas.init();
+        AssetsG.init();
         gameS=new Game();
     
     }
 
     @Override
     public void run() {
-
+        
         long now = 0;
         long lastTime = System.nanoTime();
         int frames = 0;
@@ -136,6 +143,7 @@ public class Window extends JFrame implements Runnable {
         thread = new Thread(this);
         thread.start();//Inicia el hilo run()
         running = true;//Permite iniciar el booleano que inicia el juego
+        
     }
 
     private void stop() {
