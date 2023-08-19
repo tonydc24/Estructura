@@ -92,7 +92,7 @@ public class Window extends JFrame implements Runnable {
         g.fillRect(0, 0, width, height);
         g.drawImage(AssetsG.fondo, 0, 0, null);
         g.drawImage(AssetsG.trash, 610, 440, null);
-        g.drawImage(AssetsG.lechuga, 400, 200, null);
+        g.drawImage(AssetsG.meat, 400, 200, null);
         gameS.draw(g);//Dibujo los items en pantalla
 
         g.setColor(Color.black);

@@ -16,6 +16,7 @@ public class AssetsG {
     public static BufferedImage fondo;
     public static BufferedImage lechuga;
     public static BufferedImage trash;
+    public static BufferedImage meat;
   public static Clip backgroundMusic;//Seleciona el png del objeto
     public static void init() {
 
@@ -26,6 +27,7 @@ public class AssetsG {
         fondo=Loader.imageLoader("Assets/images/fondo.png");
         lechuga=Loader.imageLoader("Assets/images/lechuga.png");
         trash=Loader.imageLoader("Assets/images/trash.png");
+        meat=Loader.imageLoader("Assets/images/meat.png");
 
         //Cargar sonidos
         backgroundMusic = Loader.loadSound("Assets/sound/backgroundMusic.wav");
