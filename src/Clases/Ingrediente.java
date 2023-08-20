@@ -12,33 +12,33 @@ import java.awt.image.BufferedImage;
  *
  * @author Usuario
  */
-public class Ingrediente extends Objetos {
-    private int id;
-    private String nombre;
-
-    public Ingrediente(Vector2D position , BufferedImage textura) {
-        super   (position , textura);
-    }
-    
-    public int getId() {
-        return id;
-    }
-    
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public class Ingrediente  {
+//    private int id;
+//    private String nombre;
+//
+//    public Ingrediente(Vector2D position , BufferedImage textura) {
+//        super   (position , textura);
+//    }
+//    
+//    public int getId() {
+//        return id;
+//    }
+//    
+//    public void setNombre(String nombre){
+//        this.nombre = nombre;
+//    }
+//
+//    public String getNombre() {
+//        return nombre;
+//    }
+//
+//    @Override
+//    public void update() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+//
+//    @Override
+//    public void draw(Graphics g) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 }
