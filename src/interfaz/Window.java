@@ -9,6 +9,7 @@ import MisClases.Comida;
 import MisClases.Player;
 import Math.Colision;
 import Math.Vector2D;
+import MisClases.OrdenControl;
 import graphics.AssetsG;
 import graphics.Sound;
 import input.Keyboard;
@@ -51,10 +52,12 @@ public class Window extends JFrame implements Runnable {
     private Keyboard keyBoard;
     private Sound background;
     //Estructura cinta
-    private boolean isHoldingObject = false;
-    private boolean isObjectInTrash = false;
-    //Letras
-      private JLabel timerLabel;
+    
+    //Estructura ordenes
+    private OrdenControl orden;
+    private long lastOrderTime = System.currentTimeMillis();
+    private static final long intervalOrden = 20000;
+    //Contador Juego
     private long startTime;
     private long elapsedTime;
     private long timeLimit = 2 * 60 * 1000;
@@ -69,7 +72,7 @@ public class Window extends JFrame implements Runnable {
         
         
         
-        setTitle("Juego");
+        setTitle("NOT Overcooked");
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);//No permite cambiar el size de la ventana
@@ -102,6 +105,7 @@ public class Window extends JFrame implements Runnable {
 
         AssetsG.init();
          startTime = System.currentTimeMillis();
+        orden =new  OrdenControl(); 
     
     }
  
@@ -110,7 +114,13 @@ public class Window extends JFrame implements Runnable {
         //Actualiza/recibe los datos del teclado ejemplo el WASD
         
         player.update();
-      
+        long currentTime = System.currentTimeMillis();//Agarrar tiempo actual
+        if (currentTime - lastOrderTime >= intervalOrden) {
+            orden.generarOrdenAleatoria();
+            lastOrderTime = currentTime;
+            //Si el tiempo actual menos la ultima vez que genero una orden es
+            //mayor a 20 o sea el intervalo , genera una nueva orden
+        }
         Rectangle trashbin = new Rectangle(610, 440, 90, 90);
 
       
@@ -136,9 +146,7 @@ public class Window extends JFrame implements Runnable {
         g.fillRect(0, 0, width, height);
         g.drawImage(AssetsG.fondo, 0, 0, null);
         g.drawImage(AssetsG.trash, 610, 440, null);
-//        if (!isHoldingObject()&&isObjectInTrash()) {
-//      comida.draw(g); // Dibuja el objeto solo si no se está sosteniendo
-//        }
+
         player.draw(g);
         //Dibujo los items en pantalla
 
@@ -150,10 +158,12 @@ public class Window extends JFrame implements Runnable {
           // Actualizar y mostrar el temporizador en el JLabel
         elapsedTime = System.currentTimeMillis() - startTime;
         long remainingTime = timeLimit - elapsedTime;
-        String timeFormatted = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(remainingTime),
+        timeFormatted = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(remainingTime),
         TimeUnit.MILLISECONDS.toSeconds(remainingTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(remainingTime)));
         
         g.drawString("Tiempo restante: "+timeFormatted,640, 21);
+        g.drawString("Puntos: "+puntosTotal, 640, 41);
+        orden.drawOrden(g);
         g.dispose();
         bs.show();
     }

@@ -5,6 +5,7 @@
 package Estructura;
 
 import MisClases.Orden;
+import java.awt.Graphics;
 
 /**
  *
@@ -59,4 +60,19 @@ public class Cola {
         }
         return null;
     }
+
+    public void drawOrdenes(Graphics g, int x, int y) {
+        NodoHamburguesa aux = frente;
+        String ordenInfo = "";
+        y=40;
+        while (aux != null) {
+            ordenInfo = "Orden:" + aux.getOrden().getTipoHamburguesa()
+                    + " Puntos/ " + aux.getOrden().getPuntos();
+            g.drawString(ordenInfo, 300, y);
+            y += 30;
+            aux = aux.getSiguiente();
+
+        }
+    }
+     
 }
