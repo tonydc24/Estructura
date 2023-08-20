@@ -65,6 +65,7 @@ public class Cola {
     private void dibujarPanelOrdenes(Graphics g){
         int posXPanelOrden = 280;
         int posYPanelOrden = 8;
+        g.drawString("Ordenes entrantes", 300, 20);
         g.drawRect(posXPanelOrden, posYPanelOrden, 265, 100);
     }
 
