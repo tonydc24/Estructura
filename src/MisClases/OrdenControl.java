@@ -34,12 +34,12 @@ public class OrdenControl {
 
     }
     public void ordenLista(){
-    
+        //verificar si la orden procesada cumple con los ingredientes para otorgar puntos
     
     
     }
     public void drawOrden(Graphics g){
-    colaDeOrdenes.drawOrdenes(g, salto, inicial);    
+        colaDeOrdenes.drawOrdenes(g, salto, inicial);    
     } 
    
     public static int getRandomNumber() {

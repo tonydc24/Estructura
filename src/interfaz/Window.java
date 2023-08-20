@@ -163,6 +163,7 @@ public class Window extends JFrame implements Runnable {
         
         g.drawString("Tiempo restante: "+timeFormatted,640, 21);
         g.drawString("Puntos: "+puntosTotal, 640, 41);
+        
         orden.drawOrden(g);
         g.dispose();
         bs.show();
