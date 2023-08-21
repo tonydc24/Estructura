@@ -6,19 +6,39 @@ package MisClases;
 
 import Math.Colision;
 import Math.Vector2D;
-import graphics.Loader;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Comida extends Objetos{
 
-    private int ingrediente;
    
-    
 
     public Comida(Vector2D position, BufferedImage textura,Colision hitbox) {
         super(position, textura,hitbox);
+    }
+  
+    public BufferedImage getTextura() {
+        return textura;
+    }
+
+    public void setTextura(BufferedImage textura) {
+        this.textura = textura;
+    }
+
+    public Vector2D getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector2D position) {
+        this.position = position;
+    }
+
+    public Colision getHitbox() {
+        return hitbox;
+    }
+
+    public void setHitbox(Colision hitbox) {
+        this.hitbox = hitbox;
     }
 
 

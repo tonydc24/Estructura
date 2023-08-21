@@ -9,6 +9,7 @@ import MisClases.Comida;
 import MisClases.Player;
 import Math.Colision;
 import Math.Vector2D;
+import MisClases.IngredientesControl;
 import MisClases.OrdenControl;
 import graphics.AssetsG;
 import graphics.Sound;
@@ -52,7 +53,7 @@ public class Window extends JFrame implements Runnable {
     private Keyboard keyBoard;
     private Sound background;
     //Estructura cinta
-    
+    private IngredientesControl ingredientes;
     //Estructura ordenes
     private OrdenControl orden;
     private long lastOrderTime = System.currentTimeMillis();
@@ -105,14 +106,16 @@ public class Window extends JFrame implements Runnable {
 
         AssetsG.init();
          startTime = System.currentTimeMillis();
-        orden =new  OrdenControl(); 
+            orden =new  OrdenControl(); 
+          ingredientes = new IngredientesControl();
+            
     
     }
  
     private void update() {//Actualiza mi juego
         keyBoard.update();
         //Actualiza/recibe los datos del teclado ejemplo el WASD
-        
+        ingredientes.generarIngrediente();
         player.update();
         long currentTime = System.currentTimeMillis();//Agarrar tiempo actual
         if (currentTime - lastOrderTime >= intervalOrden) {
@@ -122,7 +125,7 @@ public class Window extends JFrame implements Runnable {
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
         Rectangle trashbin = new Rectangle(610, 440, 90, 90);
-
+        
       
 
 
@@ -145,8 +148,9 @@ public class Window extends JFrame implements Runnable {
         
         g.fillRect(0, 0, width, height);
         g.drawImage(AssetsG.fondo, 0, 0, null);
-        g.drawImage(AssetsG.trash, 610, 440, null);
-
+        g.drawImage(AssetsG.trash, 615, 440, null);
+        g.drawImage(AssetsG.mesa, 110,440,null);
+        ingredientes.drawIngrediente(g);
         player.draw(g);
         //Dibujo los items en pantalla
 
@@ -164,6 +168,7 @@ public class Window extends JFrame implements Runnable {
         g.drawString("Tiempo restante: "+timeFormatted,640, 21);
         g.drawString("Puntos: "+puntosTotal, 640, 41);
         orden.drawOrden(g);
+     
         g.dispose();
         bs.show();
     }

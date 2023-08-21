@@ -5,6 +5,8 @@
 package Estructura;
 
 import MisClases.Comida;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -72,6 +74,22 @@ public class ListaCircular {
         temp.setSiguiente(temp.getSiguiente().getSiguiente());
         size--;
     }
+    public void drawIngrediente(Graphics g) {
+    NodoIngrediente aux = cabeza;
+    int x=600;
+    int y=200;
+    int i =0;
+    BufferedImage imagen;
+    while (i<5) {
+       
+        imagen = aux.getIngrediente().getTextura();
+        // Ajusta el espaciado entre ingredientes
+        g.drawImage(imagen, x, y, null);
+        x-=100;
+        aux = aux.getSiguiente();
+        i++;
+    }
+}
 
     public NodoIngrediente getCabeza() {
         return cabeza;

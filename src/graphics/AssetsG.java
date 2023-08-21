@@ -16,11 +16,18 @@ public class AssetsG {
     public static BufferedImage fondo;
    
     public static BufferedImage trash;
+    public static BufferedImage mesa;
+    
     
     public static BufferedImage carne;
     public static BufferedImage pan;
     public static BufferedImage lechuga;
     public static BufferedImage queso;
+    
+    public static BufferedImage Hcarne;
+    public static BufferedImage Hqueso;
+    public static BufferedImage Hclasica;
+    
     
    
     
@@ -39,21 +46,28 @@ public class AssetsG {
         //Fondgo png
         //
         //
-        //Basurero png 
-        trash=Loader.imageLoader("Assets/images/trash.png");
-        //Basurero png
+        //Interactivos png 
+        trash = Loader.imageLoader("Assets/images/trash.png");
+        mesa = Loader.imageLoader("Assets/images/table.png");
+        //Interactivos png
         //
         //
         //Ingrediente png
-        carne=Loader.imageLoader("Assets/images/meat.png");
-        lechuga=Loader.imageLoader("Assets/images/lechuga.png");  
-        queso=Loader.imageLoader("Assets/images/cheese.png");
-        pan=Loader.imageLoader("Assets/images/bread.png");
+        carne = Loader.imageLoader("Assets/images/meat.png");
+        lechuga = Loader.imageLoader("Assets/images/lechuga.png");
+        queso = Loader.imageLoader("Assets/images/cheese.png");
+        pan = Loader.imageLoader("Assets/images/bread.png");
         //Ingrediente png
-        
-        
+        //
+        //Hamburguesas png
+        Hcarne = Loader.imageLoader("Assets/images/Hmeat.png");
+        Hqueso = Loader.imageLoader("Assets/images/Hcheese.png");
+        Hclasica = Loader.imageLoader("Assets/images/Hclassic.png");
+        //Hamburguesas png
+        //
+
         //Cargar sonidos
         backgroundMusic = Loader.loadSound("Assets/sound/backgroundMusic.wav");
     }
-  
+
 }

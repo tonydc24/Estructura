@@ -13,7 +13,7 @@ import javax.sound.sampled.Clip;
 
 
 public class Loader {
-
+//Png
     public static BufferedImage imageLoader(String path) {
         try {
               File archivo = new File(path);
@@ -24,7 +24,7 @@ public class Loader {
         }
         return null;
     }
-
+//Sonido no funciona de momento
     public static Clip loadSound(String path) {
         try {
             Clip clip = AudioSystem.getClip();

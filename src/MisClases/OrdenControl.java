@@ -33,7 +33,7 @@ public class OrdenControl {
         }
 
     }
-    public void ordenLista(){
+    public void ordenTerminada(){
     
     
     
