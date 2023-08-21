@@ -26,7 +26,7 @@ public class OrdenControl {
             colaDeOrdenes.inserta(orden);
         }
         if (tipoDeHamburguesa == 2) {
-            Orden orden = new Orden("Hamburguesa con queso", 10,3,21);
+            Orden orden = new Orden("Hamburguesa con queso", 10,3,23);
             colaDeOrdenes.inserta(orden);
         }
         if (tipoDeHamburguesa == 3) {
