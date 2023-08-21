@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import graphics.AssetsG;
 import input.Keyboard;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 //Clase hija de la clase Objetos
 public class Player extends Objetos {
     private Comida ingrediente;
@@ -67,27 +68,40 @@ public class Player extends Objetos {
 //            }
 //        }
 //    }
-        
-     
-     
+        Vector2D playerPosition = new Vector2D(400, 300); 
+Colision playerHitbox = new Colision(
+        (int) playerPosition.getX(),
+        (int) playerPosition.getY(),
+        72, 117);
+        new Player(playerPosition, AssetsG.down, playerHitbox);
+        Rectangle trashbin = new Rectangle(615, 440, 90, 90);
+        Rectangle table = new Rectangle(110, 440, 90, 90);
+        Rectangle player = new Rectangle(
+                (int) position.getX(),
+                (int) position.getY(),
+                hitbox.width,
+                hitbox.height);
+
+        if (player.intersects(trashbin)) {
+            if (Keyboard.e) {
+                System.out.println("Aqui esta el basurero");
+            }
+
+        }
+        if (player.intersects(table)) {
+            if (Keyboard.e) {
+                System.out.println("Aqui esta la mesa");
+            }
+
     }
-     public void pickUpIngrediente(Comida ingrediente) {
-        isHoldingObject = true;
-        this.ingrediente = ingrediente;
-        this.ingrediente.setPosition(new Vector2D(position.getX(), position.getY()));
-        this.ingrediente.getHitbox().setSize(0, 0);
     }
     
 
     @Override
     public void draw(Graphics g) {
         g.drawImage(textura, (int) position.getX(), (int) position.getY(), null);
-        g.drawRect((int) position.getX(), (int) position.getY(), 0,0 );
-         if (isHoldingObject) {
-            // Dibuja el objeto en la posición del jugador
-            BufferedImage objectInHand = ingrediente.getTextura();
-            g.drawImage(objectInHand, (int) position.getX(), (int) position.getY(), null);
-        }
+//         g.drawRect((int) position.getX(), (int) position.getY(),hitbox.width ,hitbox.height );
+     
     }
     }
 
