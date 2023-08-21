@@ -8,35 +8,37 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
+
     private boolean[] keys = new boolean[256];
-    
-    public static boolean up , down , left , right,e;
+
+    public static boolean up, down, left, right, e;
 
     public Keyboard() {
-        up=false;
-        down=false;
-        left=false;
-        right=false;
-        e=false;
+        up = false;
+        down = false;
+        left = false;
+        right = false;
+        e = false;
 
     }
-    public void update(){
+
+    public void update() {
         up = keys[KeyEvent.VK_W];
         down = keys[KeyEvent.VK_S];
         left = keys[KeyEvent.VK_A];
         right = keys[KeyEvent.VK_D];
         e = keys[KeyEvent.VK_E];
-    
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-      keys[e.getKeyCode()]=true;
+        keys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-              keys[e.getKeyCode()]=false;
+        keys[e.getKeyCode()] = false;
 
     }
 

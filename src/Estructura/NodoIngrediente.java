@@ -6,9 +6,9 @@ package Estructura;
 
 import MisClases.Comida;
 
-
 public class NodoIngrediente {
-private Comida ingrediente;
+
+    private Comida ingrediente;
     private NodoIngrediente siguiente;
 
     public NodoIngrediente(Comida ingrediente) {
@@ -27,6 +27,5 @@ private Comida ingrediente;
     public void setSiguiente(NodoIngrediente siguiente) {
         this.siguiente = siguiente;
     }
-    
-    
+
 }

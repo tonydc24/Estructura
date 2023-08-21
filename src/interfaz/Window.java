@@ -24,7 +24,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 

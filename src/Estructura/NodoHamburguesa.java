@@ -11,6 +11,7 @@ import MisClases.Orden;
  * @author Anthony
  */
 public class NodoHamburguesa {
+
     private Orden orden;
     private NodoHamburguesa siguiente;
 

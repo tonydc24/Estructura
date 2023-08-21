@@ -9,14 +9,12 @@ import Math.Vector2D;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-public class Comida extends Objetos{
+public class Comida extends Objetos {
 
-   
-
-    public Comida(Vector2D position, BufferedImage textura,Colision hitbox) {
-        super(position, textura,hitbox);
+    public Comida(Vector2D position, BufferedImage textura, Colision hitbox) {
+        super(position, textura, hitbox);
     }
-  
+
     public BufferedImage getTextura() {
         return textura;
     }
@@ -41,16 +39,14 @@ public class Comida extends Objetos{
         this.hitbox = hitbox;
     }
 
-
     @Override
     public void update() {
-        
-        
+
     }
 
     @Override
     public void draw(Graphics g) {
-         g.drawImage(textura, (int) position.getX(), (int) position.getY(), null);  
+        g.drawImage(textura, (int) position.getX(), (int) position.getY(), null);
     }
 
 }

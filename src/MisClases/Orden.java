@@ -9,6 +9,7 @@ package MisClases;
  * @author Anthony
  */
 public class Orden {
+
     private String tipoHamburguesa;
     private int puntos;
 

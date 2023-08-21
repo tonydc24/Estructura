@@ -16,10 +16,11 @@ import java.util.Random;
  * @author Anthony
  */
 public class IngredientesControl {
-    private int salto ; 
+
+    private int salto;
     private int inicial;
     private ListaCircular lista;
-    
+
     public IngredientesControl() {
         lista = new ListaCircular();
     }
@@ -43,20 +44,20 @@ public class IngredientesControl {
                     AssetsG.queso,
                     ingredienteHitbox);
             lista.insertar(ingrediente);
-            
+
         }
         if (tipoIngrediente == 3) {
-             Vector2D ingredientePosition = new Vector2D(400, 200);
+            Vector2D ingredientePosition = new Vector2D(400, 200);
             Colision ingredienteHitbox = new Colision(ingredientePosition, 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.pan,
                     ingredienteHitbox);
             lista.insertar(ingrediente);
-            
+
         }
         if (tipoIngrediente == 4) {
-             Vector2D ingredientePosition = new Vector2D(400, 200);
+            Vector2D ingredientePosition = new Vector2D(400, 200);
             Colision ingredienteHitbox = new Colision(ingredientePosition, 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
@@ -64,15 +65,16 @@ public class IngredientesControl {
                     ingredienteHitbox);
             lista.insertar(ingrediente);
         }
-   
-   
-   }
-   public void drawIngrediente(Graphics g){
-    lista.drawIngrediente(g);
-    }  
-   public static int getRandomNumber() {
+
+    }
+
+    public void drawIngrediente(Graphics g) {
+        lista.drawIngrediente(g);
+    }
+
+    public static int getRandomNumber() {
         Random random = new Random();
         return random.nextInt(4) + 1;
     }
-   
+
 }

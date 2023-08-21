@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
  * @author Anthony
  */
 public class ListaCircular {
+
     private NodoIngrediente cabeza;
     private int size; // Variable para rastrear el tamaño de la lista
 
@@ -33,7 +34,7 @@ public class ListaCircular {
             cabeza.setSiguiente(cabeza);
             size = 1; // Establecer el tamaño en 1
         } else {
-            NodoIngrediente  temp = cabeza;
+            NodoIngrediente temp = cabeza;
             while (temp.getSiguiente() != cabeza) {
                 temp = temp.getSiguiente();
             }
@@ -42,8 +43,8 @@ public class ListaCircular {
             size++; // Incrementar el tamaño de la lista
         }
     }
-    
-     public void eliminar(int posicion) {
+
+    public void eliminar(int posicion) {
         if (cabeza == null || posicion < 0 || posicion >= size) {
             // No se puede eliminar si la lista está vacía o la posición es inválida
             return;
@@ -74,25 +75,25 @@ public class ListaCircular {
         temp.setSiguiente(temp.getSiguiente().getSiguiente());
         size--;
     }
+
     public void drawIngrediente(Graphics g) {
-    NodoIngrediente aux = cabeza;
-    int x=600;
-    int y=200;
-    int i =0;
-    BufferedImage imagen;
-    while (i<5) {
-       
-        imagen = aux.getIngrediente().getTextura();
-        // Ajusta el espaciado entre ingredientes
-        g.drawImage(imagen, x, y, null);
-        x-=100;
-        aux = aux.getSiguiente();
-        i++;
+        NodoIngrediente aux = cabeza;
+        int x = 600;
+        int y = 200;
+        int i = 0;
+        BufferedImage imagen;
+        while (i < 5) {
+
+            imagen = aux.getIngrediente().getTextura();
+            // Ajusta el espaciado entre ingredientes
+            g.drawImage(imagen, x, y, null);
+            x -= 100;
+            aux = aux.getSiguiente();
+            i++;
+        }
     }
-}
 
     public NodoIngrediente getCabeza() {
         return cabeza;
     }
 }
-

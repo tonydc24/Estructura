@@ -12,13 +12,13 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-
 public class Loader {
 //Png
+
     public static BufferedImage imageLoader(String path) {
         try {
-              File archivo = new File(path);
-              return ImageIO.read(archivo);
+            File archivo = new File(path);
+            return ImageIO.read(archivo);
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -26,6 +26,7 @@ public class Loader {
         return null;
     }
 //Sonido no funciona de momento
+
     public static Clip loadSound(String path) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());

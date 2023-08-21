@@ -11,8 +11,9 @@ import java.util.Random;
 public class OrdenControl {
 
     private Cola colaDeOrdenes;
-    private int salto ; 
+    private int salto;
     private int inicial;
+
     public OrdenControl() {
         colaDeOrdenes = new Cola();
     }
@@ -33,15 +34,15 @@ public class OrdenControl {
         }
 
     }
-    public void ordenTerminada(){
-    
-    
-    
+
+    public void ordenTerminada() {
+
     }
-    public void drawOrden(Graphics g){
-    colaDeOrdenes.drawOrdenes(g, salto, inicial);    
-    } 
-   
+
+    public void drawOrden(Graphics g) {
+        colaDeOrdenes.drawOrdenes(g, salto, inicial);
+    }
+
     public static int getRandomNumber() {
         Random random = new Random();
         return random.nextInt(3) + 1;

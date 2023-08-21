@@ -9,6 +9,7 @@ package Math;
  * @author Anthony
  */
 public class Vector2D {
+
     //Esta clase me permite posicionar los objetos en la pantalla
     private double x, y;
 
@@ -37,6 +38,5 @@ public class Vector2D {
     public void setY(double y) {
         this.y = y;
     }
-    
 
 }

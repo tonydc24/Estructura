@@ -12,17 +12,19 @@ import java.awt.image.BufferedImage;
 
 //Super clase de objetos
 public abstract class Objetos {
+
     protected BufferedImage textura;
     protected Vector2D position;
     protected Colision hitbox;
 
-    public Objetos(Vector2D position, BufferedImage textura,Colision hitbox) {
+    public Objetos(Vector2D position, BufferedImage textura, Colision hitbox) {
         this.textura = textura;
         this.position = position;
-        this.hitbox=hitbox;
+        this.hitbox = hitbox;
     }
+
     public abstract void update();
-    
+
     public abstract void draw(Graphics g);
 
     public Vector2D getPosition() {
@@ -31,7 +33,7 @@ public abstract class Objetos {
 
     public void setPosition(Vector2D position) {
         this.position = position;
-    }   
+    }
 
     public BufferedImage getTextura() {
         return textura;
@@ -48,8 +50,5 @@ public abstract class Objetos {
     public void setHitbox(Colision hitbox) {
         this.hitbox = hitbox;
     }
-    
-    
-    
-    
+
 }

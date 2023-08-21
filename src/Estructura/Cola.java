@@ -29,7 +29,7 @@ public class Cola {
     }
 
     public boolean estaLlena() {
-        
+
         return size >= MAX_ORDENES;
     }
 
@@ -64,7 +64,7 @@ public class Cola {
     public void drawOrdenes(Graphics g, int x, int y) {
         NodoHamburguesa aux = frente;
         String ordenInfo = "";
-        y=40;
+        y = 40;
         while (aux != null) {
             ordenInfo = "Orden:" + aux.getOrden().getTipoHamburguesa()
                     + " Puntos/ " + aux.getOrden().getPuntos();
@@ -74,5 +74,5 @@ public class Cola {
 
         }
     }
-     
+
 }
