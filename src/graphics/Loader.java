@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
@@ -27,10 +28,12 @@ public class Loader {
 //Sonido no funciona de momento
     public static Clip loadSound(String path) {
         try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(Loader.class.getResource(path)));
+            clip.open(audioInputStream);
             return clip;
         } catch (Exception e) {
+            System.out.println("Error --> " + e.getMessage());
         }
         return null;
     }

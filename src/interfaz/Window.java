@@ -4,7 +4,6 @@
  */
 package interfaz;
 
-
 import MisClases.Comida;
 import MisClases.Player;
 import Math.Colision;
@@ -65,14 +64,13 @@ public class Window extends JFrame implements Runnable {
     private String timeFormatted;
     //Puntos
     private int puntosTotal;
+
     public Window() {
-       
-        Vector2D playerPosition = new Vector2D(400, 300); 
+
+        Vector2D playerPosition = new Vector2D(400, 300);
         Colision playerHitbox = new Colision(playerPosition, 72, 117);
         player = new Player(playerPosition, AssetsG.down, playerHitbox);
-        
-        
-        
+
         setTitle("NOT Overcooked");
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,7 +82,7 @@ public class Window extends JFrame implements Runnable {
 
         canvas = new Canvas();
         keyBoard = new Keyboard();
-        
+
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
@@ -92,26 +90,25 @@ public class Window extends JFrame implements Runnable {
 
         add(canvas);
         canvas.addKeyListener(keyBoard);
-
-//        background = new Sound(AssetsG.backgroundMusic);
-//        background.play();
-        
     }
 
     public static void main(String[] args) {
         new Window().start();
-        
+
     }
+
     private void init() {
 
         AssetsG.init();
-         startTime = System.currentTimeMillis();
-            orden =new  OrdenControl(); 
-          ingredientes = new IngredientesControl();
-            
-    
+        startTime = System.currentTimeMillis();
+        orden = new OrdenControl();
+        ingredientes = new IngredientesControl();
+
+        background = new Sound(AssetsG.backgroundMusic);
+        background.play();
+
     }
- 
+
     private void update() {//Actualiza mi juego
         keyBoard.update();
         //Actualiza/recibe los datos del teclado ejemplo el WASD
@@ -125,11 +122,7 @@ public class Window extends JFrame implements Runnable {
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
         Rectangle trashbin = new Rectangle(610, 440, 90, 90);
-        
-      
 
-
-        
         //Actualiza el juego , ejemplo cuando se mueve el player
         //o se mueve algun objeto en la banda transportadora
     }
@@ -145,11 +138,11 @@ public class Window extends JFrame implements Runnable {
         g = bs.getDrawGraphics();
         //
         g.setColor(Color.black);
-        
+
         g.fillRect(0, 0, width, height);
         g.drawImage(AssetsG.fondo, 0, 0, null);
         g.drawImage(AssetsG.trash, 615, 440, null);
-        g.drawImage(AssetsG.mesa, 110,440,null);
+        g.drawImage(AssetsG.mesa, 110, 440, null);
         ingredientes.drawIngrediente(g);
         player.draw(g);
         //Dibujo los items en pantalla
@@ -159,30 +152,28 @@ public class Window extends JFrame implements Runnable {
         g.drawString("" + avFps, 4, 13);
 
         //
-          // Actualizar y mostrar el temporizador en el JLabel
+        // Actualizar y mostrar el temporizador en el JLabel
         elapsedTime = System.currentTimeMillis() - startTime;
         long remainingTime = timeLimit - elapsedTime;
         timeFormatted = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(remainingTime),
-        TimeUnit.MILLISECONDS.toSeconds(remainingTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(remainingTime)));
-        
-        g.drawString("Tiempo restante: "+timeFormatted,640, 21);
-        g.drawString("Puntos: "+puntosTotal, 640, 41);
+                TimeUnit.MILLISECONDS.toSeconds(remainingTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(remainingTime)));
+
+        g.drawString("Tiempo restante: " + timeFormatted, 640, 21);
+        g.drawString("Puntos: " + puntosTotal, 640, 41);
         orden.drawOrden(g);
-     
+
         g.dispose();
         bs.show();
     }
 
-    
-
     @Override
     public void run() {
-        
+
         long now = 0;
         long lastTime = System.nanoTime();
         int frames = 0;
         long time = 0;
-        
+
         init();
         while (running) {
             now = System.nanoTime();
@@ -193,9 +184,9 @@ public class Window extends JFrame implements Runnable {
             if (delta >= 1) {
                 update();
                 draw();
-                delta--;            
+                delta--;
                 frames++;
-                
+
             }
             if (time >= 1000000000) {
                 avFps = frames;
@@ -217,7 +208,7 @@ public class Window extends JFrame implements Runnable {
 
                 int option = JOptionPane.showConfirmDialog(null,
                         "FIN DEL JUEGO" + "\nPuntaje Total:" + puntosTotal,
-                   "FIN DEL JUEGO", JOptionPane.OK_CANCEL_OPTION);
+                        "FIN DEL JUEGO", JOptionPane.OK_CANCEL_OPTION);
 
                 // Verificar si se seleccionó "Ok"
                 if (option == JOptionPane.OK_OPTION) {
