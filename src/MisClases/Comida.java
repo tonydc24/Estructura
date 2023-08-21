@@ -10,9 +10,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class Comida extends Objetos {
-
-    public Comida(Vector2D position, BufferedImage textura, Colision hitbox) {
+    private int Indentificador;
+    public Comida(Vector2D position, BufferedImage textura, Colision hitbox,int Indentificador) {
         super(position, textura, hitbox);
+        this.Indentificador= Indentificador;
     }
 
     public BufferedImage getTextura() {
@@ -38,6 +39,15 @@ public class Comida extends Objetos {
     public void setHitbox(Colision hitbox) {
         this.hitbox = hitbox;
     }
+
+    public int getIndentificador() {
+        return Indentificador;
+    }
+
+    public void setIndentificador(int Indentificador) {
+        this.Indentificador = Indentificador;
+    }
+    
 
     @Override
     public void update() {

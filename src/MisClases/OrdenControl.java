@@ -21,15 +21,24 @@ public class OrdenControl {
     public void generarOrdenAleatoria() {
         int tipoDeHamburguesa = getRandomNumber();
         if (tipoDeHamburguesa == 1) {
-            Orden orden = new Orden("Hamburguesa de carne", 5);
+            Orden orden = new Orden("Hamburguesa de carne",
+                    5,
+                    2,
+                    12);
             colaDeOrdenes.inserta(orden);
         }
         if (tipoDeHamburguesa == 2) {
-            Orden orden = new Orden("Hamburguesa con queso", 10);
+            Orden orden = new Orden("Hamburguesa con queso",
+                    10,
+                    3,
+                    21);
             colaDeOrdenes.inserta(orden);
         }
         if (tipoDeHamburguesa == 3) {
-            Orden orden = new Orden("Hamburguesa clasica", 15);
+            Orden orden = new Orden("Hamburguesa clasica",
+                    15,
+                    4,
+                    32);
             colaDeOrdenes.inserta(orden);
         }
 

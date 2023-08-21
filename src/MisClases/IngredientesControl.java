@@ -33,7 +33,7 @@ public class IngredientesControl {
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.carne,
-                    ingredienteHitbox);
+                    ingredienteHitbox,5);
             lista.insertar(ingrediente);
         }
         if (tipoIngrediente == 2) {
@@ -42,7 +42,7 @@ public class IngredientesControl {
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.queso,
-                    ingredienteHitbox);
+                    ingredienteHitbox,11);
             lista.insertar(ingrediente);
 
         }
@@ -52,7 +52,7 @@ public class IngredientesControl {
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.pan,
-                    ingredienteHitbox);
+                    ingredienteHitbox,7);
             lista.insertar(ingrediente);
 
         }
@@ -62,7 +62,7 @@ public class IngredientesControl {
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.lechuga,
-                    ingredienteHitbox);
+                    ingredienteHitbox,9);
             lista.insertar(ingrediente);
         }
 
