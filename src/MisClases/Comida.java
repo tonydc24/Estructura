@@ -11,11 +11,8 @@ import java.awt.image.BufferedImage;
 
 public class Comida extends Objetos {
 
-    private int identificador;
-
-    public Comida(Vector2D position, BufferedImage textura, Colision hitbox, int identificador) {
+    public Comida(Vector2D position, BufferedImage textura, Colision hitbox) {
         super(position, textura, hitbox);
-        this.identificador = identificador;
     }
 
     public BufferedImage getTextura() {
@@ -40,14 +37,6 @@ public class Comida extends Objetos {
 
     public void setHitbox(Colision hitbox) {
         this.hitbox = hitbox;
-    }
-
-    public int getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
     }
 
     @Override

@@ -11,7 +11,20 @@ import java.awt.Rectangle;
  * @author Anthony
  */
 public class Colision extends Rectangle {
-    public Colision(int x, int y, int width, int height) {
-        super(x, y, width, height);
+
+    private Vector2D position;
+
+    public Colision(Vector2D position, int width, int height) {
+        super((int) position.getX(), (int) position.getY(), width, height);
+        this.position = position;
+    }
+
+    public Vector2D getPosition() {
+        return position;
+    }
+
+    public void updatePosition() {
+        x = (int) position.getX();
+        y = (int) position.getY();
     }
 }

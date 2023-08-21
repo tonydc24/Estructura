@@ -66,7 +66,9 @@ public class Window extends JFrame implements Runnable {
 
     public Window() {
 
-        
+        Vector2D playerPosition = new Vector2D(400, 300);
+        Colision playerHitbox = new Colision(playerPosition, 72, 117);
+        player = new Player(playerPosition, AssetsG.down, playerHitbox);
 
         setTitle("NOT Overcooked");
         setSize(width, height);
