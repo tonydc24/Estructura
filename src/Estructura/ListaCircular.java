@@ -16,17 +16,26 @@ public class ListaCircular {
 
     private NodoIngrediente cabeza;
     private int size; // Variable para rastrear el tamaño de la lista
+    private static final int ingredienteMaximos = 5;
 
     public ListaCircular() {
         cabeza = null;
         size = 0;
     }
 
+    public int getSize() {
+        return size;
+    }
+    public boolean estaLlena() {
+
+        return size >= ingredienteMaximos;
+    }
+    
     public void insertar(Comida ingrediente) {
-        if (size >= 5) {
+        if (!estaLlena()) {
             // La lista ya tiene el máximo de nodos, no se puede agregar más
-            return;
-        }
+            
+        
 
         NodoIngrediente nuevoNodo = new NodoIngrediente(ingrediente);
         if (cabeza == null) {
@@ -41,6 +50,7 @@ public class ListaCircular {
             temp.setSiguiente(nuevoNodo);
             nuevoNodo.setSiguiente(cabeza);
             size++; // Incrementar el tamaño de la lista
+        }
         }
     }
 
@@ -78,8 +88,10 @@ public class ListaCircular {
 
     public void drawIngrediente(Graphics g) {
         NodoIngrediente aux = cabeza;
-        int x = 600;
-        int y = 200;
+         double xDouble = aux.getIngrediente().getPosition().getX();
+        double yDouble = aux.getIngrediente().getPosition().getY();
+        int x = (int) xDouble;
+        int y = (int) yDouble;
         int i = 0;
         BufferedImage imagen;
         while (i < 5) {

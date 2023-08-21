@@ -27,7 +27,7 @@ public class IngredientesControl {
     public void generarIngrediente() {
         int tipoIngrediente = getRandomNumber();
         if (tipoIngrediente == 1) {
-            Vector2D ingredientePosition = new Vector2D(400, 200);
+            Vector2D ingredientePosition = posicion(lista.getSize());
              Colision ingredienteHitbox = new Colision((int)ingredientePosition.getX()
                      ,(int)ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
@@ -37,7 +37,7 @@ public class IngredientesControl {
             lista.insertar(ingrediente);
         }
         if (tipoIngrediente == 2) {
-            Vector2D ingredientePosition = new Vector2D(400, 200);
+            Vector2D ingredientePosition = posicion(lista.getSize());
             Colision ingredienteHitbox = new Colision((int)ingredientePosition.getX()
                     ,(int)ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
@@ -48,7 +48,7 @@ public class IngredientesControl {
             
         }
         if (tipoIngrediente == 3) {
-             Vector2D ingredientePosition = new Vector2D(400, 200);
+            Vector2D ingredientePosition = posicion(lista.getSize());
              Colision ingredienteHitbox = new Colision((int)ingredientePosition.getX()
                      ,(int)ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
@@ -59,18 +59,36 @@ public class IngredientesControl {
             
         }
         if (tipoIngrediente == 4) {
-             Vector2D ingredientePosition = new Vector2D(400, 200);
+             Vector2D ingredientePosition = posicion(lista.getSize());
              Colision ingredienteHitbox = new Colision((int)ingredientePosition.getX()
                      ,(int)ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.lechuga,
-                    ingredienteHitbox,9);
+                    ingredienteHitbox, 9);
             lista.insertar(ingrediente);
         }
-   
-   
-   }
+
+    }
+
+    public Vector2D posicion(int size) {
+        if (size == 0) {
+            return new Vector2D(600, 200);
+        } else if (size == 1) {
+            return new Vector2D(500, 200);
+        } else if (size == 2) {
+            return new Vector2D(300, 200);
+        } else if (size == 3) {
+            return new Vector2D(200, 200);
+        } else if (size == 4) {
+            
+        }
+       
+        return new Vector2D(0, 0);
+
+    }
+
+    
    public void drawIngrediente(Graphics g){
     lista.drawIngrediente(g);
     }  
