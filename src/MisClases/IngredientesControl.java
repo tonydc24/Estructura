@@ -29,40 +29,48 @@ public class IngredientesControl {
         int tipoIngrediente = getRandomNumber();
         if (tipoIngrediente == 1) {
             Vector2D ingredientePosition = new Vector2D(400, 200);
-            Colision ingredienteHitbox = new Colision(ingredientePosition, 52, 47);
+            Colision ingredienteHitbox = new Colision(
+                    (int) ingredientePosition.getX(), 
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.carne,
-                    ingredienteHitbox,5);
+                    ingredienteHitbox, 5);
             lista.insertar(ingrediente);
         }
         if (tipoIngrediente == 2) {
             Vector2D ingredientePosition = new Vector2D(400, 200);
-            Colision ingredienteHitbox = new Colision(ingredientePosition, 52, 47);
+            Colision ingredienteHitbox = new Colision(
+                    (int) ingredientePosition.getX(), 
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.queso,
-                    ingredienteHitbox,11);
+                    ingredienteHitbox, 11);
             lista.insertar(ingrediente);
 
         }
         if (tipoIngrediente == 3) {
             Vector2D ingredientePosition = new Vector2D(400, 200);
-            Colision ingredienteHitbox = new Colision(ingredientePosition, 52, 47);
+            Colision ingredienteHitbox = new Colision(
+                    (int) ingredientePosition.getX(), 
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.pan,
-                    ingredienteHitbox,7);
+                    ingredienteHitbox, 7);
             lista.insertar(ingrediente);
 
         }
         if (tipoIngrediente == 4) {
             Vector2D ingredientePosition = new Vector2D(400, 200);
-            Colision ingredienteHitbox = new Colision(ingredientePosition, 52, 47);
+            Colision ingredienteHitbox = new Colision(
+                    (int) ingredientePosition.getX(),
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.lechuga,
-                    ingredienteHitbox,9);
+                    ingredienteHitbox, 9);
             lista.insertar(ingrediente);
         }
 
