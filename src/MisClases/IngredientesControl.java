@@ -4,7 +4,7 @@
  */
 package MisClases;
 
-import Estructura.ListaCircular;
+import Estructura.ListaIngredientes;
 
 import Math.Vector2D;
 import graphics.AssetsG;
@@ -20,10 +20,10 @@ public class IngredientesControl {
 
     private int salto;
     private int inicial;
-    private ListaCircular lista;
+    private ListaIngredientes lista;
 
     public IngredientesControl() {
-        lista = new ListaCircular();
+        lista = new ListaIngredientes();
     }
 
     public void generarIngrediente() {
@@ -93,7 +93,7 @@ public class IngredientesControl {
     public void drawIngrediente(Graphics g) {
         lista.drawIngrediente(g);
     }
-    public ListaCircular getLista() {
+    public ListaIngredientes getLista() {
         
         return lista;
     }

@@ -14,13 +14,13 @@ import java.awt.image.BufferedImage;
  *
  * @author Anthony
  */
-public class ListaCircular {
+public class ListaIngredientes {
 
     private NodoIngrediente cabeza;
     private int size; // Variable para rastrear el tamaño de la lista
     private static final int ingredienteMaximos = 5;
 
-    public ListaCircular() {
+    public ListaIngredientes() {
         cabeza = null;
         size = 0;
     }
@@ -56,37 +56,39 @@ public class ListaCircular {
         }
     }
 
-    public void eliminar(int posicion) {
-        if (cabeza == null || posicion < 0 || posicion >= size) {
-            // No se puede eliminar si la lista está vacía o la posición es inválida
+    public void eliminar(Comida ingrediente) {
+    if (cabeza == null) {
+        // La lista está vacía, no hay nada que eliminar
+        return;
+    }
+
+    if (cabeza.getIngrediente() == ingrediente) {
+        // El ingrediente a eliminar está en el primer nodo
+        if (cabeza.getSiguiente() == cabeza) {
+            // La lista solo tiene un nodo
+            cabeza = null;
+        } else {
+            NodoIngrediente temp = cabeza;
+            while (temp.getSiguiente() != cabeza) {
+                temp = temp.getSiguiente();
+            }
+            temp.setSiguiente(cabeza.getSiguiente());
+            cabeza = cabeza.getSiguiente();
+        }
+        size--;
+        return;
+    }
+
+    NodoIngrediente temp = cabeza;
+    while (temp.getSiguiente() != cabeza) {
+        if (temp.getSiguiente().getIngrediente() == ingrediente) {
+            temp.setSiguiente(temp.getSiguiente().getSiguiente());
+            size--;
             return;
         }
-
-        if (posicion == 0) {
-            if (cabeza.getSiguiente() == cabeza) {
-                // La lista solo tiene un nodo
-                cabeza = null;
-                size = 0;
-                return;
-            } else {
-                NodoIngrediente temp = cabeza;
-                while (temp.getSiguiente() != cabeza) {
-                    temp = temp.getSiguiente();
-                }
-                temp.setSiguiente(cabeza.getSiguiente());
-                cabeza = cabeza.getSiguiente();
-                size--;
-                return;
-            }
-        }
-
-        NodoIngrediente temp = cabeza;
-        for (int i = 0; i < posicion - 1; i++) {
-            temp = temp.getSiguiente();
-        }
-        temp.setSiguiente(temp.getSiguiente().getSiguiente());
-        size--;
+        temp = temp.getSiguiente();
     }
+}
 
     public void drawIngrediente(Graphics g) {
         NodoIngrediente aux = cabeza;

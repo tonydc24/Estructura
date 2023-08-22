@@ -14,6 +14,7 @@ public class OrdenControl {
 
     private Cola colaDeOrdenes;
     private ListaMesa listaMesa;
+    private NodoHamburguesa nodo;
     private int salto;
     private int inicial;
 
@@ -38,17 +39,21 @@ public class OrdenControl {
 
     }
 
-    public int ordenTerminada() {
-        int puntosObtenidos = 0;
-        NodoHamburguesa nodoOrden = colaDeOrdenes.elimina();
-        Orden ordenProcesada = nodoOrden.getOrden();
-        int especificacion = ordenProcesada.getEspecificar();
-        //recorrer la lista de la mesa para obtener la suma de los pesos de cada ingrediente
-        int sumaPesosIngredientesEnMesa = 0;
-        if (sumaPesosIngredientesEnMesa == especificacion) {
-            puntosObtenidos = ordenProcesada.getPuntos();
+    public int ordenTerminada(int combinacion, int especificar , int puntos) {
+        NodoHamburguesa aux = colaDeOrdenes.getFrente();
+        if (aux !=null && aux.getOrden().getCombinacion()== combinacion && aux.getOrden().getEspecificar()==especificar) {
+           puntos += aux.getOrden().getPuntos();
+           return puntos;
         }
-        return puntosObtenidos;
+        else{
+            
+            
+            
+            return puntos=0;
+        
+        }
+       
+        
     }
 
     public void drawOrden(Graphics g) {

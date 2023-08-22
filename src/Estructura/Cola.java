@@ -33,6 +33,11 @@ public class Cola {
         return size >= MAX_ORDENES;
     }
 
+    public NodoHamburguesa getFrente() {
+        return frente;
+    }
+    
+
     public void inserta(Orden orden) {
         if (!estaLlena()) {
             NodoHamburguesa nuevoNodo = new NodoHamburguesa(orden);

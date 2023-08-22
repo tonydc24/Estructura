@@ -62,6 +62,8 @@ public class Window extends JFrame implements Runnable {
     private String timeFormatted;
     //Puntos
     private int puntosTotal;
+    private int combinacion;
+    private int especificar;
 
     public Window() {
 
@@ -123,7 +125,8 @@ public class Window extends JFrame implements Runnable {
             //Si el tiempo actual menos la ultima vez que genero una orden es
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
-       
+        
+       orden.ordenTerminada(combinacion, especificar, puntosTotal);
         //Actualiza el juego , ejemplo cuando se mueve el player
         //o se mueve algun objeto en la banda transportadora
     }
