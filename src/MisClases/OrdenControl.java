@@ -35,6 +35,7 @@ public class OrdenControl {
             Orden orden = new Orden("Hamburguesa clasica", 15, 4, 32);
             colaDeOrdenes.inserta(orden);
         }
+
     }
 
     public int ordenTerminada() {

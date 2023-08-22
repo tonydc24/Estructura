@@ -4,6 +4,9 @@
  */
 package MisClases;
 
+
+import MisClases.Objetos;
+import MisClases.Comida;
 import Math.Colision;
 import Math.Vector2D;
 import java.awt.image.BufferedImage;
@@ -12,16 +15,17 @@ import input.Keyboard;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 //Clase hija de la clase Objetos
-
 public class Player extends Objetos {
-
     private Comida ingrediente;
     private boolean isHoldingObject = false;
-
-    public Player(Vector2D position, BufferedImage textura, Colision hitbox) {
-        super(position, textura, hitbox);
+    public Player(Vector2D position, BufferedImage textura,Colision hitbox ) {
+        super(position, textura,hitbox);
+        
     }
-
+    
+    
+    
+    
     @Override
     public void update() {
         int deltaX = 0;
@@ -45,8 +49,10 @@ public class Player extends Objetos {
         }
 
         // Calcula la nueva posición después del movimiento
+      
+
         // Limita el movimiento dentro de los límites del juego
-        if (position.getX() + deltaX >= 120 && position.getX() + deltaX <= 640) {
+         if (position.getX() + deltaX >= 120 && position.getX() + deltaX <= 640) {
             position.setX(position.getX() + deltaX);
         }
         if (position.getY() + deltaY >= 190 && position.getY() + deltaY <= 400) {
@@ -62,11 +68,11 @@ public class Player extends Objetos {
 //            }
 //        }
 //    }
-        Vector2D playerPosition = new Vector2D(400, 300);
-        Colision playerHitbox = new Colision(
-                (int) playerPosition.getX(),
-                (int) playerPosition.getY(),
-                72, 117);
+        Vector2D playerPosition = new Vector2D(400, 300); 
+Colision playerHitbox = new Colision(
+        (int) playerPosition.getX(),
+        (int) playerPosition.getY(),
+        72, 117);
         new Player(playerPosition, AssetsG.down, playerHitbox);
         Rectangle trashbin = new Rectangle(615, 440, 90, 90);
         Rectangle table = new Rectangle(110, 440, 90, 90);
@@ -86,12 +92,16 @@ public class Player extends Objetos {
             if (Keyboard.e) {
                 System.out.println("Aqui esta la mesa");
             }
-        }
+
     }
+    }
+    
 
     @Override
     public void draw(Graphics g) {
         g.drawImage(textura, (int) position.getX(), (int) position.getY(), null);
 //         g.drawRect((int) position.getX(), (int) position.getY(),hitbox.width ,hitbox.height );
+     
     }
-}
+    }
+
