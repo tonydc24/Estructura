@@ -9,6 +9,7 @@ package MisClases;
  * @author Anthony
  */
 public class Orden {
+
     private String tipoHamburguesa;
     private int puntos;
     private int combinacion;
@@ -53,5 +54,4 @@ public class Orden {
         this.especificar = especificar;
     }
 
-  
 }
