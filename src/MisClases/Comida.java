@@ -4,16 +4,17 @@
  */
 package MisClases;
 
-import Math.Colision;
+
 import Math.Vector2D;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Comida extends Objetos {
 
     private int identificador;
 
-    public Comida(Vector2D position, BufferedImage textura, Colision hitbox, int identificador) {
+    public Comida(Vector2D position, BufferedImage textura, Rectangle hitbox, int identificador) {
         super(position, textura, hitbox);
         this.identificador = identificador;
     }
@@ -34,11 +35,11 @@ public class Comida extends Objetos {
         this.position = position;
     }
 
-    public Colision getHitbox() {
+    public Rectangle getHitbox() {
         return hitbox;
     }
 
-    public void setHitbox(Colision hitbox) {
+    public void setHitbox(Rectangle hitbox) {
         this.hitbox = hitbox;
     }
 

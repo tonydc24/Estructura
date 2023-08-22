@@ -5,7 +5,9 @@
 package Estructura;
 
 import MisClases.Comida;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -95,7 +97,13 @@ public class ListaCircular {
         int i = 0;
         BufferedImage imagen;
         while (i < 5) {
-
+               Graphics2D g2d = (Graphics2D) g;
+    
+   
+    
+    // Dibuja el rectángulo de colisión del jugador en rojo
+            g2d.setColor(Color.blue);
+            g2d.draw(aux.getIngrediente().getHitbox());
             imagen = aux.getIngrediente().getTextura();
             // Ajusta el espaciado entre ingredientes
             g.drawImage(imagen, x, y, null);
@@ -108,4 +116,5 @@ public class ListaCircular {
     public NodoIngrediente getCabeza() {
         return cabeza;
     }
+    
 }

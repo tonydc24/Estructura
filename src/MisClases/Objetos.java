@@ -4,7 +4,6 @@
  */
 package MisClases;
 
-import Math.Colision;
 import Math.Vector2D;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -15,9 +14,9 @@ public abstract class Objetos {
 
     protected BufferedImage textura;
     protected Vector2D position;
-    protected Colision hitbox;
+    protected Rectangle hitbox;
 
-    public Objetos(Vector2D position, BufferedImage textura, Colision hitbox) {
+    public Objetos(Vector2D position, BufferedImage textura, Rectangle hitbox) {
         this.textura = textura;
         this.position = position;
         this.hitbox = hitbox;
@@ -47,7 +46,7 @@ public abstract class Objetos {
         return hitbox;
     }
 
-    public void setHitbox(Colision hitbox) {
+    public void setHitbox(Rectangle hitbox) {
         this.hitbox = hitbox;
     }
 

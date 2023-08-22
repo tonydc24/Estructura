@@ -5,27 +5,31 @@
 package MisClases;
 
 
+import Estructura.NodoIngrediente;
 import MisClases.Objetos;
 import MisClases.Comida;
-import Math.Colision;
+
 import Math.Vector2D;
 import java.awt.image.BufferedImage;
 import graphics.AssetsG;
 import input.Keyboard;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 //Clase hija de la clase Objetos
+
 public class Player extends Objetos {
+
     private Comida ingrediente;
+    private IngredientesControl ingredientesControl;
     private boolean isHoldingObject = false;
-    public Player(Vector2D position, BufferedImage textura,Colision hitbox ) {
-        super(position, textura,hitbox);
-        
+
+    public Player(Vector2D position, BufferedImage textura, Rectangle hitbox) {
+        super(position, textura, hitbox);
+
     }
-    
-    
-    
-    
+
     @Override
     public void update() {
         int deltaX = 0;
@@ -49,59 +53,50 @@ public class Player extends Objetos {
         }
 
         // Calcula la nueva posición después del movimiento
-      
-
         // Limita el movimiento dentro de los límites del juego
-         if (position.getX() + deltaX >= 120 && position.getX() + deltaX <= 640) {
+        if (position.getX() + deltaX >= 120 && position.getX() + deltaX <= 640) {
             position.setX(position.getX() + deltaX);
         }
         if (position.getY() + deltaY >= 190 && position.getY() + deltaY <= 400) {
             position.setY(position.getY() + deltaY);
         }
-//        if (hitbox.intersects(ingrediente.getHitbox())) {
-//        if (Keyboard.e) {
-//            if (!isHoldingObject) {
-//                isHoldingObject = true;
-//                ingrediente.setPosition(new Vector2D(position.getX(), position.getY()));
-//                ingrediente.getHitbox().setSize(0, 0);
-//                // Realiza la acción de recolección: el jugador ahora lleva el objeto
-//            }
-//        }
-//    }
-        Vector2D playerPosition = new Vector2D(400, 300); 
-Colision playerHitbox = new Colision(
-        (int) playerPosition.getX(),
-        (int) playerPosition.getY(),
-        72, 117);
-        new Player(playerPosition, AssetsG.down, playerHitbox);
+
         Rectangle trashbin = new Rectangle(615, 440, 90, 90);
         Rectangle table = new Rectangle(110, 440, 90, 90);
-        Rectangle player = new Rectangle(
-                (int) position.getX(),
-                (int) position.getY(),
-                hitbox.width,
-                hitbox.height);
+        Vector2D newPosition = new Vector2D(position.getX() + deltaX, position.getY() + deltaY);
+        hitbox.setLocation((int) newPosition.getX(), (int) newPosition.getY());
 
-        if (player.intersects(trashbin)) {
+        if (hitbox.intersects(trashbin)) {
             if (Keyboard.e) {
                 System.out.println("Aqui esta el basurero");
             }
 
         }
-        if (player.intersects(table)) {
+        if (hitbox.intersects(table)) {
             if (Keyboard.e) {
                 System.out.println("Aqui esta la mesa");
             }
 
+        }
     }
-    }
-    
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(textura, (int) position.getX(), (int) position.getY(), null);
-//         g.drawRect((int) position.getX(), (int) position.getY(),hitbox.width ,hitbox.height );
-     
-    }
-    }
+        Graphics2D g2d = (Graphics2D) g;
 
+        // Dibuja la textura del jugador
+        g.drawImage(textura, (int) position.getX(), (int) position.getY(), null);
+
+        // Dibuja el rectángulo de colisión del jugador en rojo
+        g2d.setColor(Color.RED);
+        g2d.draw(hitbox);
+
+        // Dibuja el ingrediente sostenido encima del jugador si lo hay
+        if (ingredientesControl != null) {
+            BufferedImage ingredienteImage = ingredientesControl.getLista().getCabeza().getIngrediente().getTextura();
+            g.drawImage(ingredienteImage, (int) position.getX(), (int) position.getY() - ingredienteImage.getHeight(), null);
+        }
+
+        // Dibuja los rectángulos de colisión de los ingredientes en azul
+    }
+}
