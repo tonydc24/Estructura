@@ -93,43 +93,46 @@ public class Window extends JFrame implements Runnable {
 
     }
 
-    private void init() {
+        private void init() {
 
-        AssetsG.init();
-        startTime = System.currentTimeMillis();
-        orden = new OrdenControl();
-        ingredientes = new IngredientesControl();
-        Vector2D playerPosition = new Vector2D(400, 300);
-        Rectangle playerHitbox = new Rectangle(
-                (int) playerPosition.getX(),
-                (int) playerPosition.getY(),
-                72, 117);
-        player = new Player(playerPosition,
-                            AssetsG.down,
-                            playerHitbox);
+            AssetsG.init();
+            startTime = System.currentTimeMillis();
+            orden = new OrdenControl();
+            ingredientes = new IngredientesControl();
+            Vector2D playerPosition = new Vector2D(400, 300);
+            Rectangle playerHitbox = new Rectangle(
+                    (int) playerPosition.getX(),
+                    (int) playerPosition.getY(),
+                    72, 117);
+            player = new Player(playerPosition,
+                                AssetsG.down,
+                                playerHitbox);
 
-        background = new Sound(AssetsG.backgroundMusic);
-        background.play();
+            background = new Sound(AssetsG.backgroundMusic);
+            background.play();
+            for (int i = 0; i < 5; i++) {
+              ingredientes.generarIngrediente();  
+            }
 
-    }
-
-    private void update() {//Actualiza mi juego
-        keyBoard.update();
-        //Actualiza/recibe los datos del teclado ejemplo el WASD
-        ingredientes.generarIngrediente();
-        player.update();
-        long currentTime = System.currentTimeMillis();//Agarrar tiempo actual
-        if (currentTime - lastOrderTime >= intervalOrden) {
-            orden.generarOrdenAleatoria();
-            lastOrderTime = currentTime;
-            //Si el tiempo actual menos la ultima vez que genero una orden es
-            //mayor a 20 o sea el intervalo , genera una nueva orden
         }
-        
-       orden.ordenTerminada(combinacion, especificar, puntosTotal);
-        //Actualiza el juego , ejemplo cuando se mueve el player
-        //o se mueve algun objeto en la banda transportadora
-    }
+
+        private void update() {//Actualiza mi juego
+            keyBoard.update();
+            //Actualiza/recibe los datos del teclado ejemplo el WASD
+
+            player.update();
+            long currentTime = System.currentTimeMillis();//Agarrar tiempo actual
+            if (currentTime - lastOrderTime >= intervalOrden) {
+                orden.generarOrdenAleatoria();
+                lastOrderTime = currentTime;
+                //Si el tiempo actual menos la ultima vez que genero una orden es
+                //mayor a 20 o sea el intervalo , genera una nueva orden
+            }
+
+           orden.ordenTerminada(combinacion, especificar, puntosTotal);
+            //Actualiza el juego , ejemplo cuando se mueve el player
+            //o se mueve algun objeto en la banda transportadora
+        }
 
     private void draw() {//Inseta items en mi juego
         bs = canvas.getBufferStrategy();
