@@ -4,6 +4,8 @@
  */
 package MisClases;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author Anthony
@@ -13,12 +15,14 @@ public class Orden {
     private int puntos;
     private int combinacion;
     private int especificar;
+    private BufferedImage textura;
 
-    public Orden(String tipoHamburguesa, int puntos, int combinacion, int especificar) {
+    public Orden(String tipoHamburguesa, int puntos, int combinacion, int especificar, BufferedImage textura) {
         this.tipoHamburguesa = tipoHamburguesa;
         this.puntos = puntos;
         this.combinacion = combinacion;
         this.especificar = especificar;
+        this.textura = textura;
     }
 
     public String getTipoHamburguesa() {
@@ -53,5 +57,14 @@ public class Orden {
         this.especificar = especificar;
     }
 
+    public BufferedImage getTextura() {
+        return textura;
+    }
+
+    public void setTextura(BufferedImage textura) {
+        this.textura = textura;
+    }
+
+   
   
 }

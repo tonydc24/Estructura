@@ -8,6 +8,7 @@ import MisClases.Comida;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -89,6 +90,24 @@ public class ListaIngredientes {
         }
     }
 
+    public Rectangle valores() {
+        NodoIngrediente aux = cabeza;
+;
+
+        while (aux != null) {
+           
+           
+//            Rectangle hitbox = aux.getIngrediente().getHitbox();
+            System.out.println(aux.getIngrediente().getIdentificador());
+
+            aux = aux.getSiguiente(); // Avanzar al siguiente nodo
+
+        }
+
+        // Si el bucle termina sin encontrar un return, retorna null o realiza otro manejo
+        return null;
+    }
+
     public void drawIngrediente(Graphics g) {
         NodoIngrediente aux = cabeza;
         double xDouble;
@@ -96,16 +115,16 @@ public class ListaIngredientes {
 
         int i = 0;
         BufferedImage imagen;
-        while (i < 5) {
+        while (i < getSize()) {
             Graphics2D g2d = (Graphics2D) g;
-
-            // Dibuja el rectángulo de colisión del jugador en rojo
             g2d.setColor(Color.blue);
             g2d.draw(aux.getIngrediente().getHitbox());
+            // Dibuja el rectángulo de colisión del jugador en rojo
+
             imagen = aux.getIngrediente().getTextura();
             xDouble = aux.getIngrediente().getPosition().getX();
             yDouble = aux.getIngrediente().getPosition().getY();
-
+           
             // Ajusta el espaciado entre ingredientes
             g.drawImage(imagen, (int) xDouble, (int) yDouble, null);
 

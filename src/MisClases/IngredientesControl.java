@@ -5,6 +5,8 @@
 package MisClases;
 
 import Estructura.ListaIngredientes;
+import Estructura.NodoHamburguesa;
+import Estructura.NodoIngrediente;
 
 import Math.Vector2D;
 import graphics.AssetsG;
@@ -20,10 +22,12 @@ public class IngredientesControl {
 
     private int salto;
     private int inicial;
+    private Rectangle colision;
     private ListaIngredientes lista;
-
+     private NodoIngrediente nodo;
     public IngredientesControl() {
         lista = new ListaIngredientes();
+        
     }
 
     public void generarIngrediente() {
@@ -75,18 +79,18 @@ public class IngredientesControl {
 
     public Vector2D posicion(int size) {
         if (size == 0) {
-            return new Vector2D(600, 200);
+            return new Vector2D(660, 200);
         } else if (size == 1) {
-            return new Vector2D(500, 200);
+            return new Vector2D(520, 200);
         } else if (size == 2) {
-            return new Vector2D(400, 200);
+            return new Vector2D(380, 200);
         } else if (size == 3) {
-            return new Vector2D(300, 200);
+            return new Vector2D(240, 200);
         } else if (size == 4) {
 
         }
 
-        return new Vector2D(200, 200);
+        return new Vector2D(100, 200);
 
     }
 
@@ -96,6 +100,22 @@ public class IngredientesControl {
     public ListaIngredientes getLista() {
         
         return lista;
+    }
+     public Rectangle Posiciones() {
+        
+        return lista.valores();
+    }
+     public boolean colisionConIngredientes(Rectangle playerHitbox) {
+        NodoIngrediente aux = lista.getCabeza();
+        
+        while (aux != null) {
+            if (playerHitbox.intersects(aux.getIngrediente().getHitbox())) {
+                return true; // Hay colisión con un ingrediente
+            }
+            aux = aux.getSiguiente();
+        }
+        
+        return false; // No hay colisión con ningún ingrediente
     }
 
     public static int getRandomNumber() {

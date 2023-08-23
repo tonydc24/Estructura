@@ -16,6 +16,10 @@ public class NodoIngrediente {
         this.siguiente = null;
     }
 
+    public NodoIngrediente() {
+    }
+    
+
     public Comida getIngrediente() {
         return ingrediente;
     }

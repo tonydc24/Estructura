@@ -4,6 +4,8 @@
  */
 package interfaz;
 
+import Estructura.ListaIngredientes;
+import Estructura.NodoIngrediente;
 import MisClases.Comida;
 import MisClases.Player;
 import Math.Vector2D;
@@ -46,24 +48,36 @@ public class Window extends JFrame implements Runnable {
     private int avFps = fps;
     //
     private Player player;
+    private Rectangle trashbin;
+    private Rectangle table;
     private Comida comida;
     private Keyboard keyBoard;
     private Sound background;
+    private Rectangle colision;
+    
     //Estructura cinta
     private IngredientesControl ingredientes;
-    //Estructura ordenes
+    private ListaIngredientes lista;
+    //Estructura ordenes / Tiempos
     private OrdenControl orden;
     private long lastOrderTime = System.currentTimeMillis();
     private static final long intervalOrden = 20000;
+    private static final long mensajes = 500;
+    private long ActivationTime = 0;
     //Contador Juego
     private long startTime;
     private long elapsedTime;
     private long timeLimit = 2 * 60 * 1000;
+    private long currentTime;
     private String timeFormatted;
     //Puntos
     private int puntosTotal;
     private int combinacion;
     private int especificar;
+    //Acciones
+    private boolean botar = false;
+    private boolean colocar = false;
+    private boolean agarrar = false;
 
     public Window() {
 
@@ -78,6 +92,7 @@ public class Window extends JFrame implements Runnable {
 
         canvas = new Canvas();
         keyBoard = new Keyboard();
+        
 
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
@@ -93,46 +108,75 @@ public class Window extends JFrame implements Runnable {
 
     }
 
-        private void init() {
+    private void init() {
 
-            AssetsG.init();
-            startTime = System.currentTimeMillis();
-            orden = new OrdenControl();
-            ingredientes = new IngredientesControl();
-            Vector2D playerPosition = new Vector2D(400, 300);
-            Rectangle playerHitbox = new Rectangle(
-                    (int) playerPosition.getX(),
-                    (int) playerPosition.getY(),
-                    72, 117);
-            player = new Player(playerPosition,
-                                AssetsG.down,
-                                playerHitbox);
+        AssetsG.init();
 
-            background = new Sound(AssetsG.backgroundMusic);
-            background.play();
-            for (int i = 0; i < 5; i++) {
-              ingredientes.generarIngrediente();  
-            }
-
+        startTime = System.currentTimeMillis();
+        orden = new OrdenControl();
+        lista = new ListaIngredientes();
+        ingredientes = new IngredientesControl();
+        Vector2D playerPosition = new Vector2D(400, 300);
+        Rectangle playerHitbox = new Rectangle(
+                (int) playerPosition.getX(),
+                (int) playerPosition.getY(),
+                72, 117);
+        player = new Player(playerPosition,
+                AssetsG.down,
+                playerHitbox);
+        trashbin = new Rectangle(615, 440, 90, 90);
+        table = new Rectangle(110, 440, 90, 90);
+       
+        background = new Sound(AssetsG.backgroundMusic);
+        background.play();
+        for (int i = 0; i < 5; i++) {
+            ingredientes.generarIngrediente();
         }
+        orden.generarOrdenAleatoria();
+    }
 
-        private void update() {//Actualiza mi juego
-            keyBoard.update();
-            //Actualiza/recibe los datos del teclado ejemplo el WASD
+    private void update() {//Actualiza mi juego
+        keyBoard.update();
+        //Actualiza/recibe los datos del teclado ejemplo el WASD
 
-            player.update();
-            long currentTime = System.currentTimeMillis();//Agarrar tiempo actual
-            if (currentTime - lastOrderTime >= intervalOrden) {
-                orden.generarOrdenAleatoria();
-                lastOrderTime = currentTime;
-                //Si el tiempo actual menos la ultima vez que genero una orden es
-                //mayor a 20 o sea el intervalo , genera una nueva orden
+        player.update();
+
+        if (player.getHitbox().intersects(trashbin)) {
+            if (Keyboard.e) {
+                botar = true;
+                ActivationTime = System.currentTimeMillis();
+                combinacion+=1;
             }
-
-           orden.ordenTerminada(combinacion, especificar, puntosTotal);
-            //Actualiza el juego , ejemplo cuando se mueve el player
-            //o se mueve algun objeto en la banda transportadora
         }
+        if (player.getHitbox().intersects(table)) {
+            if (Keyboard.e) {
+                //Guarda el momento en el run del sistema que presione la tecla 
+                ActivationTime = System.currentTimeMillis();
+                colocar = true;
+                puntosTotal+=10;
+            }
+        }
+//        colision=  ingredientes.Posiciones();
+//        if (player.getHitbox().intersects( colision)) {
+//            System.out.println("AQUI ESTOY");
+//        }
+        currentTime = System.currentTimeMillis();//Agarrar tiempo actual
+        if (currentTime - lastOrderTime >= intervalOrden) {
+            orden.generarOrdenAleatoria();
+            lastOrderTime = currentTime;
+            
+            //Si el tiempo actual menos la ultima vez que genero una orden es
+            //mayor a 20 o sea el intervalo , genera una nueva orden
+        }
+        if (lista.getSize() <= 3) {
+            ingredientes.generarIngrediente();
+        }
+       puntosTotal+= orden.ordenTerminada(combinacion, especificar, puntosTotal);
+        
+        //Actualiza el juego , ejemplo cuando se mueve el player
+        //o se mueve algun objeto en la banda transportadora
+
+    }
 
     private void draw() {//Inseta items en mi juego
         bs = canvas.getBufferStrategy();
@@ -150,15 +194,30 @@ public class Window extends JFrame implements Runnable {
         g.drawImage(AssetsG.fondo, 0, 0, null);
         g.drawImage(AssetsG.trash, 615, 440, null);
         g.drawImage(AssetsG.mesa, 110, 440, null);
+
         ingredientes.drawIngrediente(g);
         player.draw(g);
         //Dibujo los items en pantalla
+        g.setColor(Color.black);
+        g.setFont(new Font("Roboto", Font.BOLD, 20));
+        if (botar && (System.currentTimeMillis() - ActivationTime) <= mensajes) {
+
+            g.drawString("BOTAR", 375, 150);
+        } else {
+            botar = false; // Desactivar botar
+        }
+        if (colocar && (System.currentTimeMillis() - ActivationTime) <= mensajes) {
+
+            g.drawString("COLOCAR", 360, 150);
+        } else {
+            colocar = false; // Desactivar botar
+        }
+
 
         g.setColor(Color.black);
         g.setFont(new Font("Roboto", Font.BOLD, 12));
         g.drawString("" + avFps, 4, 13);
-
-        //
+        //sd
         // Actualizar y mostrar el temporizador en el JLabel
         elapsedTime = System.currentTimeMillis() - startTime;
         long remainingTime = timeLimit - elapsedTime;
@@ -171,10 +230,11 @@ public class Window extends JFrame implements Runnable {
 
         g.drawString("Tiempo restante: " + timeFormatted, 640, 21);
         g.drawString("Puntos: " + puntosTotal, 640, 41);
-        orden.drawOrden(g);
+        orden.drawOrden(g); //Dibuja orden
 
         g.dispose();
         bs.show();
+      
     }
 
     @Override
@@ -218,7 +278,7 @@ public class Window extends JFrame implements Runnable {
             public void actionPerformed(ActionEvent e) {
 
                 int option = JOptionPane.showConfirmDialog(null,
-                        "FIN DEL JUEGO" + "\nPuntaje Total:" + puntosTotal,
+                        "FIN DEL JUEGO" + "\nPuntaje Total: " + puntosTotal,
                    "FIN DEL JUEGO", JOptionPane.OK_CANCEL_OPTION);
 
                 // Verificar si se seleccionó "Ok"

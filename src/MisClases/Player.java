@@ -5,6 +5,7 @@
 package MisClases;
 
 
+import Estructura.ListaIngredientes;
 import Estructura.NodoIngrediente;
 import MisClases.Objetos;
 import MisClases.Comida;
@@ -21,7 +22,7 @@ import java.awt.Rectangle;
 
 public class Player extends Objetos {
 
-    private Comida ingrediente;
+    private ListaIngredientes ingrediente;
     private IngredientesControl ingredientesControl;
     private boolean isHoldingObject = false;
 
@@ -61,23 +62,9 @@ public class Player extends Objetos {
             position.setY(position.getY() + deltaY);
         }
 
-        Rectangle trashbin = new Rectangle(615, 440, 90, 90);
-        Rectangle table = new Rectangle(110, 440, 90, 90);
         Vector2D newPosition = new Vector2D(position.getX() + deltaX, position.getY() + deltaY);
         hitbox.setLocation((int) newPosition.getX(), (int) newPosition.getY());
 
-        if (hitbox.intersects(trashbin)) {
-            if (Keyboard.e) {
-                System.out.println("Aqui esta el basurero");
-            }
-
-        }
-        if (hitbox.intersects(table)) {
-            if (Keyboard.e) {
-                System.out.println("Aqui esta la mesa");
-            }
-
-        }
     }
 
     @Override
