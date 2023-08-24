@@ -82,19 +82,15 @@ public class ListaIngredientes {
     }
 
     public Vector2D obtenerSiguientePosicion() {
+
+       
+       
+
+        siguientePosicion = cabeza.getIngrediente().getPosition();
+        System.out.println(siguientePosicion.getX());
+        cabeza = cabeza.getSiguiente();
         
-        NodoIngrediente aux = cabeza;
-        Vector2D posicion = null;
-        while (true) {
-            posicion=aux.getIngrediente().getPosition();
-            System.out.println(posicion.getX());
-            aux = aux.getSiguiente();
-               try {
-                Thread.sleep(1000); // Pausa de 1 segundo
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        return siguientePosicion;
     }
 
     public void drawIngrediente(Graphics g) {
