@@ -68,7 +68,7 @@ public class OrdenControl {
         NodoHamburguesa aux = colaDeOrdenes.getFrente();
         BufferedImage hambur;
         if (aux != null && combinacion == aux.getOrden().getCombinacion() && aux.getOrden().getEspecificar() == especificar) {
-            puntos += aux.getOrden().getPuntos();
+            puntos = aux.getOrden().getPuntos();
             System.out.println("Esto suma :" + puntos);
             hambur = aux.getOrden().getTextura();
 

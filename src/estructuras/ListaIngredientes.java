@@ -17,7 +17,7 @@ public class ListaIngredientes {
 
     private NodoIngrediente cabeza;
     private int size; // Variable para rastrear el tamaño de la lista
-    private static final int MAXIMO_INGREDIENTES = 4;
+    private static final int MAXIMO_INGREDIENTES = 5;
     private NodoIngrediente ingredienteActual;
     private Vector2D siguientePosicion;
 
@@ -122,7 +122,7 @@ public class ListaIngredientes {
 
         int i = 0;
         BufferedImage imagen;
-        while (i <= MAXIMO_INGREDIENTES) {
+        while (i < MAXIMO_INGREDIENTES) {
 
             // Dibuja el rectángulo de colisión del jugador en rojo
             imagen = aux.getIngrediente().getTextura();

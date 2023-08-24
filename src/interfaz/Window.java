@@ -136,7 +136,7 @@ public class Window extends JFrame implements Runnable {
         background.play();
 
         for (int i = 0; i < 5; i++) {
-
+            System.out.println(i);
             controlI.generarIngrediente();
         }
         orden.generarOrdenAleatoria();
@@ -246,6 +246,7 @@ public class Window extends JFrame implements Runnable {
         }
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 13));
+        g.drawString("FPS:"+fps, 2, 559);
         g.drawString("Hamburguesa de carne: ", 2, 30);
         g.drawString("-Pan ", 2, 48);
         g.drawString("-Carne ", 2, 58);
