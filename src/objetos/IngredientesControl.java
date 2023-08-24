@@ -5,7 +5,6 @@
 package objetos;
 
 import estructuras.ListaIngredientes;
-import estructuras.NodoIngrediente;
 
 import Math.Vector2D;
 import graphics.AssetsG;
@@ -19,12 +18,7 @@ import java.util.Random;
  */
 public class IngredientesControl {
 
-    private int salto;
-    private int inicial;
-    private Rectangle colision;
     private ListaIngredientes lista = new ListaIngredientes();
-    private NodoIngrediente nodo;
-//    private Vector2D posicion;
 
     public IngredientesControl() {
 
@@ -128,20 +122,6 @@ public class IngredientesControl {
         return lista.getSize();
     }
 
-//  public Vector2D getPosicion() {
-//    
-//            System.out.println(lista.obtenerSiguientePosicion().getX());
-//        
-////       System.out.println("Control:"+posicion.getX());
-//        return posicion;
-//    }
-//    public Vector2D getPosicion() {
-//    Vector2D siguientePosicion = lista.obtenerSiguientePosicion();
-//    if (siguientePosicion != null) {
-//        System.out.println(siguientePosicion.getX());
-//    }
-//    return siguientePosicion;
-//}
     public static int getRandomNumber() {
         Random random = new Random();
 

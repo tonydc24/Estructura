@@ -16,7 +16,6 @@ import java.awt.image.BufferedImage;
 public class ListaIngredientes {
 
     private NodoIngrediente cabeza;
-    private NodoIngrediente ultimo;
     private int size; // Variable para rastrear el tamaño de la lista
     private static final int MAXIMO_INGREDIENTES = 4;
     private NodoIngrediente ingredienteActual;

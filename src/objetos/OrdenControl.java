@@ -66,8 +66,6 @@ public class OrdenControl {
     public int ordenTerminada(int combinacion, int especificar, int puntos) {
 
         NodoHamburguesa aux = colaDeOrdenes.getFrente();
-//        System.out.println("Combinacion:"+aux.getOrden().getCombinacion());
-//        System.out.println("Especificar:"+aux.getOrden().getEspecificar());
         BufferedImage hambur;
         if (aux != null && combinacion == aux.getOrden().getCombinacion() && aux.getOrden().getEspecificar() == especificar) {
             puntos += aux.getOrden().getPuntos();

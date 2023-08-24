@@ -52,13 +52,11 @@ public class Window extends JFrame implements Runnable {
 
     private Rectangle IngredienteF;
     private Vector2D siguientePosicion;////////////////////////////////////
-    private NodoIngrediente nodo;
 //Estructura cinta
     private IngredientesControl controlI;
     private ListaIngredientes lista;
     //Estructura ordenes / Tiempos
     private OrdenControl orden;
-    private Cola cola;
     private long lastOrderTime = System.currentTimeMillis();
     private static final long intervalOrden = 20000;
     private static final long mensajes = 500;

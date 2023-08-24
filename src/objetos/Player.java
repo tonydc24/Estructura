@@ -4,22 +4,15 @@
  */
 package objetos;
 
-import estructuras.ListaIngredientes;
-
 import Math.Vector2D;
 import java.awt.image.BufferedImage;
 import graphics.AssetsG;
 import input.Keyboard;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 //Clase hija de la clase Objetos
 
 public class Player extends Objetos {
-
-   
-    
 
     public Player(Vector2D position, BufferedImage textura, Rectangle hitbox) {
         super(position, textura, hitbox);

@@ -19,30 +19,6 @@ import java.awt.image.BufferedImage;
             this.identificador = identificador;
         }
 
-        public BufferedImage getTextura() {
-            return textura;
-        }
-
-        public void setTextura(BufferedImage textura) {
-            this.textura = textura;
-        }
-
-        public Vector2D getPosition() {
-            return position;
-        }
-
-        public void setPosition(Vector2D position) {
-            this.position = position;
-        }
-
-        public Rectangle getHitbox() {
-            return hitbox;
-        }
-
-        public void setHitbox(Rectangle hitbox) {
-            this.hitbox = hitbox;
-        }
-
         public int getIdentificador() {
             return identificador;
         }
