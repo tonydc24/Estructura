@@ -32,62 +32,74 @@ public class IngredientesControl {
 
     public void generarIngrediente() {
         int tipoIngrediente = getRandomNumber();
-        if (tipoIngrediente == 1) {
-            Vector2D ingredientePosition = posicion(lista.getSize());
-            Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                    (int) ingredientePosition.getY(), 52, 47);
-            Comida ingrediente = new Comida(
-                    ingredientePosition,
-                    AssetsG.carne,
-                    ingredienteHitbox, 5);
-            lista.insertar(ingrediente);
+        Vector2D ingredientePosition;
+        Rectangle ingredienteHitbox;
+        Comida ingrediente;
+        switch(tipoIngrediente){
+            case 1 -> {
+                ingredientePosition = posicion(lista.getSize());
+                ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
+                        (int) ingredientePosition.getY(), 52, 47);
+                ingrediente = new Comida(
+                        ingredientePosition,
+                        AssetsG.carne,
+                        ingredienteHitbox, 5);
+                lista.insertar(ingrediente);
+            }
+            case 2 -> {
+                ingredientePosition = posicion(lista.getSize());
+                ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
+                        (int) ingredientePosition.getY(), 52, 47);
+                ingrediente = new Comida(
+                        ingredientePosition,
+                        AssetsG.queso,
+                        ingredienteHitbox, 11);
+                lista.insertar(ingrediente);
+            }
+            case 3 -> {
+                ingredientePosition = posicion(lista.getSize());
+                ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
+                        (int) ingredientePosition.getY(), 52, 47);
+                ingrediente = new Comida(
+                        ingredientePosition,
+                        AssetsG.pan,
+                        ingredienteHitbox, 7);
+                lista.insertar(ingrediente);
+            }
+            case 4 -> {
+                ingredientePosition = posicion(lista.getSize());
+                ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
+                        (int) ingredientePosition.getY(), 52, 47);
+                ingrediente = new Comida(
+                        ingredientePosition,
+                        AssetsG.lechuga,
+                        ingredienteHitbox, 9);
+                lista.insertar(ingrediente);
+            }
+            default -> System.out.println(String.format("No existe una "
+                        + "implementacion para este tipo de ingrediente %s",
+                        tipoIngrediente));
         }
-        if (tipoIngrediente == 2) {
-            Vector2D ingredientePosition = posicion(lista.getSize());
-            Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                    (int) ingredientePosition.getY(), 52, 47);
-            Comida ingrediente = new Comida(
-                    ingredientePosition,
-                    AssetsG.queso,
-                    ingredienteHitbox, 11);
-            lista.insertar(ingrediente);
-
-        }
-        if (tipoIngrediente == 3) {
-            Vector2D ingredientePosition = posicion(lista.getSize());
-            Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                    (int) ingredientePosition.getY(), 52, 47);
-            Comida ingrediente = new Comida(
-                    ingredientePosition,
-                    AssetsG.pan,
-                    ingredienteHitbox, 7);
-            lista.insertar(ingrediente);
-
-        }
-        if (tipoIngrediente == 4) {
-            Vector2D ingredientePosition = posicion(lista.getSize());
-            Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                    (int) ingredientePosition.getY(), 52, 47);
-            Comida ingrediente = new Comida(
-                    ingredientePosition,
-                    AssetsG.lechuga,
-                    ingredienteHitbox, 9);
-            lista.insertar(ingrediente);
-        }
-
     }
 
     public Vector2D posicion(int size) {
-        if (size == 0) {
-            return new Vector2D(660, 200);
-        } else if (size == 1) {
-            return new Vector2D(520, 200);
-        } else if (size == 2) {
-            return new Vector2D(380, 200);
-        } else if (size == 3) {
-            return new Vector2D(240, 200);
-        } else if (size == 4) {
-
+        switch (size) {
+            case 0 -> {
+                return new Vector2D(660, 200);
+            }
+            case 1 -> {
+                return new Vector2D(520, 200);
+            }
+            case 2 -> {
+                return new Vector2D(380, 200);
+            }
+            case 3 -> {
+                return new Vector2D(240, 200);
+            }
+            case 4 -> {
+            }
+            default -> {
+            }
         }
 
         return new Vector2D(100, 200);
