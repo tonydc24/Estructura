@@ -7,7 +7,6 @@ package interfaz;
 import estructuras.ListaIngredientes;
 import objetos.*;
 import Math.Vector2D;
-import estructuras.*;
 import graphics.*;
 import input.Keyboard;
 import java.awt.Canvas;
@@ -247,23 +246,21 @@ public class Window extends JFrame implements Runnable {
         }
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 13));
-        g.drawString("Hamburguesa de carne: ", 2, 50);
-        g.drawString("-Pan ", 2, 75);
-        g.drawString("-Carne ", 2, 85);
+        g.drawString("Hamburguesa de carne: ", 2, 30);
+        g.drawString("-Pan ", 2, 48);
+        g.drawString("-Carne ", 2, 58);
 
-        g.drawString("Hamburguesa de queso: ", 2, 125);
-        g.drawString("-Pan ", 2, 150);
-        g.drawString("-Carne ", 2, 160);
-        g.drawString("-Queso ", 2, 170);
+        g.drawString("Hamburguesa de queso: ", 2, 85);
+        g.drawString("-Pan ", 2, 100);
+        g.drawString("-Carne ", 2, 113);
+        g.drawString("-Queso ", 2, 123);
 
-        g.drawString("Hamburguesa clasica:  ", 2, 190);
-        g.drawString("-Pan ", 2, 215);
-        g.drawString("-Carne ", 2, 225);
-        g.drawString("-Queso ", 2, 235);
-        g.drawString("-Lechuga ", 2, 245);
+        g.drawString("Hamburguesa clasica:  ", 2, 150);
+        g.drawString("-Pan ", 2, 165);
+        g.drawString("-Carne ", 2, 178);
+        g.drawString("-Queso ", 2, 188);
+        g.drawString("-Lechuga ", 2, 198);
         g.setColor(Color.black);
-        g.setFont(new Font("Alcubierre", Font.BOLD, 12));
-        g.drawString("" + avFps, 4, 13);
         // Actualizar y mostrar el temporizador en el JLabel
         elapsedTime = System.currentTimeMillis() - startTime;
         long remainingTime = timeLimit - elapsedTime;
