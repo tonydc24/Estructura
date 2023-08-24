@@ -164,11 +164,17 @@ public class Window extends JFrame implements Runnable {
             }
         }
 
-        siguientePosicion= controlI.getPosicion();
-        if (siguientePosicion != null) {
-//            System.out.println("Hola");
-            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY()); // Actualizar la posición Y del rectángulo
-        }
+        
+           try {
+               siguientePosicion= controlI.getPosicion();
+            System.out.println("Hola");
+            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());
+                Thread.sleep(1000); // Pausa de 1 segundo
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+             // Actualizar la posición Y del rectángulo
+        
 
         currentTime = System.currentTimeMillis();//Agarrar tiempo actual
         if (currentTime - lastOrderTime >= intervalOrden) {
