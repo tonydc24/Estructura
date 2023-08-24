@@ -115,10 +115,7 @@ public class IngredientesControl {
         return lista;
     }
 
-    public Rectangle Posiciones() {
-
-        return lista.valores();
-    }
+    
 
     public boolean colisionConIngredientes(Rectangle playerHitbox) {
         NodoIngrediente aux = lista.getCabeza();

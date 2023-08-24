@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,9 +53,15 @@ public class Window extends JFrame implements Runnable {
     private Comida comida;
     private Keyboard keyBoard;
     private Sound background;
-    private Rectangle colision;
+        private int currentX = 100; // Coordenada X actual del rectángulo
+    private int speed = 2; // Velocidad de movimiento
+    private int[] targetXPositions = {100, 200, 300}; // Coordenadas X objetivo
+    private int targetIndex = 0;
 
-    //Estructura cinta
+    private Rectangle IngredienteF;
+    private Vector2D siguientePosicion;////////////////////////////////////
+
+//Estructura cinta
     private IngredientesControl ingredientes;
     private ListaIngredientes lista;
     //Estructura ordenes / Tiempos
@@ -131,6 +138,8 @@ public class Window extends JFrame implements Runnable {
             ingredientes.generarIngrediente();
         }
         orden.generarOrdenAleatoria();
+            IngredienteF = new Rectangle(640, 200, 90, 90); 
+             siguientePosicion = lista.obtenerSiguientePosicion();
     }
 
     private void update() {//Actualiza mi juego
@@ -154,10 +163,13 @@ public class Window extends JFrame implements Runnable {
                 puntosTotal += 10;
             }
         }
-//        colision=  ingredientes.Posiciones();
-//        if (player.getHitbox().intersects( colision)) {
-//            System.out.println("AQUI ESTOY");
-//        }
+        
+          if (siguientePosicion != null) {
+            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());
+        }
+    
+
+       
         currentTime = System.currentTimeMillis();//Agarrar tiempo actual
         if (currentTime - lastOrderTime >= intervalOrden) {
             orden.generarOrdenAleatoria();
@@ -201,6 +213,9 @@ public class Window extends JFrame implements Runnable {
 
         ingredientes.drawIngrediente(g);
         player.draw(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.green);
+        g2d.draw(IngredienteF);
         //Dibujo los items en pantalla
         g.setColor(Color.black);
         g.setFont(new Font("Roboto", Font.BOLD, 20));
