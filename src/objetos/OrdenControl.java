@@ -17,7 +17,7 @@ public class OrdenControl {
     private int salto;
     private int inicial;
     private Graphics g;
-
+    private  BufferedImage hambur;
     public OrdenControl() {
         colaDeOrdenes = new Cola();
     }
@@ -66,12 +66,12 @@ public class OrdenControl {
     public int ordenTerminada(int combinacion, int especificar, int puntos) {
 
         NodoHamburguesa aux = colaDeOrdenes.getFrente();
-        BufferedImage hambur;
+        
         if (aux != null && combinacion == aux.getOrden().getCombinacion() && aux.getOrden().getEspecificar() == especificar) {
             puntos = aux.getOrden().getPuntos();
             System.out.println("Esto suma :" + puntos);
             hambur = aux.getOrden().getTextura();
-
+            
             colaDeOrdenes.elimina();
             return puntos;
         } else {
@@ -90,9 +90,7 @@ public class OrdenControl {
 
     public void drawTerminada(Graphics g) {
         NodoHamburguesa aux = colaDeOrdenes.getFrente();
-        BufferedImage hambur;
-        hambur = aux.getOrden().getTextura();
-        g.drawImage(hambur, salto, salto, null);
+        g.drawImage(hambur, 129, 430, null);
     }
 
     public static int getRandomNumber() {

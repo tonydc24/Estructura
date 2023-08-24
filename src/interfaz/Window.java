@@ -70,6 +70,7 @@ public class Window extends JFrame implements Runnable {
     private int puntosTotal;
     private int combinacion;
     private int especificar;
+    private boolean ordenlista=false;
     //Acciones
     private boolean botar = false;
     private boolean colocar = false;
@@ -191,6 +192,7 @@ public class Window extends JFrame implements Runnable {
             //Si el tiempo actual menos la ultima vez que genero una orden es
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
+     
         if (controlI.size() <= 3) {
             controlI.generarIngrediente();
         }
@@ -201,6 +203,8 @@ public class Window extends JFrame implements Runnable {
             combinacion = 0;
             especificar = 0;
             puntosTotal += resultadoOrdenTerminada;
+            ordenlista=true;
+            
         }
         //Actualiza el juego , ejemplo cuando se mueve el player
         //o se mueve algun objeto en la banda transportadora
@@ -228,7 +232,7 @@ public class Window extends JFrame implements Runnable {
         if (agarrar) {
             g.drawImage(ingrediente.getTextura(), (int) player.getPosition().getX() + 5, (int) player.getPosition().getY() - 15, null);
         }
-
+        
         //Dibujo los items en pantalla
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 20));
@@ -243,6 +247,9 @@ public class Window extends JFrame implements Runnable {
             g.drawString("COLOCAR", 360, 150);
         } else {
             colocar = false; // Desactivar botar
+        }
+        if (ordenlista==true) {
+           orden.drawTerminada(g);
         }
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 13));
