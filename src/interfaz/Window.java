@@ -169,7 +169,14 @@ public class Window extends JFrame implements Runnable {
         if (lista.getSize() <= 3) {
             ingredientes.generarIngrediente();
         }
-        puntosTotal += orden.ordenTerminada(combinacion, especificar, puntosTotal);
+        int resultadoOrdenTerminada = orden.ordenTerminada(combinacion, especificar, puntosTotal);
+
+        if (resultadoOrdenTerminada > 0) {
+            combinacion = 0;
+            especificar = 0;
+        }
+
+        puntosTotal += resultadoOrdenTerminada;
 
         //Actualiza el juego , ejemplo cuando se mueve el player
         //o se mueve algun objeto en la banda transportadora
