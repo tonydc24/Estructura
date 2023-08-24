@@ -4,13 +4,12 @@
  */
 package interfaz;
 
-import Estructura.ListaIngredientes;
-import Estructura.NodoIngrediente;
-import MisClases.Comida;
-import MisClases.Player;
+import estructuras.ListaIngredientes;
+import objetos.Comida;
+import objetos.Player;
 import Math.Vector2D;
-import MisClases.IngredientesControl;
-import MisClases.OrdenControl;
+import objetos.IngredientesControl;
+import objetos.OrdenControl;
 import graphics.AssetsG;
 import graphics.Sound;
 import input.Keyboard;
@@ -54,7 +53,7 @@ public class Window extends JFrame implements Runnable {
     private Keyboard keyBoard;
     private Sound background;
     private Rectangle colision;
-    
+
     //Estructura cinta
     private IngredientesControl ingredientes;
     private ListaIngredientes lista;
@@ -92,7 +91,6 @@ public class Window extends JFrame implements Runnable {
 
         canvas = new Canvas();
         keyBoard = new Keyboard();
-        
 
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
@@ -126,7 +124,7 @@ public class Window extends JFrame implements Runnable {
                 playerHitbox);
         trashbin = new Rectangle(615, 440, 90, 90);
         table = new Rectangle(110, 440, 90, 90);
-       
+
         background = new Sound(AssetsG.backgroundMusic);
         background.play();
         for (int i = 0; i < 5; i++) {
@@ -145,7 +143,7 @@ public class Window extends JFrame implements Runnable {
             if (Keyboard.e) {
                 botar = true;
                 ActivationTime = System.currentTimeMillis();
-                combinacion+=1;
+                combinacion += 1;
             }
         }
         if (player.getHitbox().intersects(table)) {
@@ -153,7 +151,7 @@ public class Window extends JFrame implements Runnable {
                 //Guarda el momento en el run del sistema que presione la tecla 
                 ActivationTime = System.currentTimeMillis();
                 colocar = true;
-                puntosTotal+=10;
+                puntosTotal += 10;
             }
         }
 //        colision=  ingredientes.Posiciones();
@@ -164,18 +162,17 @@ public class Window extends JFrame implements Runnable {
         if (currentTime - lastOrderTime >= intervalOrden) {
             orden.generarOrdenAleatoria();
             lastOrderTime = currentTime;
-            
+
             //Si el tiempo actual menos la ultima vez que genero una orden es
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
         if (lista.getSize() <= 3) {
             ingredientes.generarIngrediente();
         }
-       puntosTotal+= orden.ordenTerminada(combinacion, especificar, puntosTotal);
-        
+        puntosTotal += orden.ordenTerminada(combinacion, especificar, puntosTotal);
+
         //Actualiza el juego , ejemplo cuando se mueve el player
         //o se mueve algun objeto en la banda transportadora
-
     }
 
     private void draw() {//Inseta items en mi juego
@@ -213,7 +210,6 @@ public class Window extends JFrame implements Runnable {
             colocar = false; // Desactivar botar
         }
 
-
         g.setColor(Color.black);
         g.setFont(new Font("Roboto", Font.BOLD, 12));
         g.drawString("" + avFps, 4, 13);
@@ -234,7 +230,7 @@ public class Window extends JFrame implements Runnable {
 
         g.dispose();
         bs.show();
-      
+
     }
 
     @Override
@@ -279,7 +275,7 @@ public class Window extends JFrame implements Runnable {
 
                 int option = JOptionPane.showConfirmDialog(null,
                         "FIN DEL JUEGO" + "\nPuntaje Total: " + puntosTotal,
-                   "FIN DEL JUEGO", JOptionPane.OK_CANCEL_OPTION);
+                        "FIN DEL JUEGO", JOptionPane.OK_CANCEL_OPTION);
 
                 // Verificar si se seleccionó "Ok"
                 if (option == JOptionPane.OK_OPTION) {

@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MisClases;
+package objetos;
 
-import Estructura.ListaIngredientes;
-import Estructura.NodoHamburguesa;
-import Estructura.NodoIngrediente;
+import estructuras.ListaIngredientes;
+import estructuras.NodoIngrediente;
 
 import Math.Vector2D;
 import graphics.AssetsG;
@@ -24,10 +23,11 @@ public class IngredientesControl {
     private int inicial;
     private Rectangle colision;
     private ListaIngredientes lista;
-     private NodoIngrediente nodo;
+    private NodoIngrediente nodo;
+
     public IngredientesControl() {
         lista = new ListaIngredientes();
-        
+
     }
 
     public void generarIngrediente() {
@@ -35,7 +35,7 @@ public class IngredientesControl {
         if (tipoIngrediente == 1) {
             Vector2D ingredientePosition = posicion(lista.getSize());
             Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                     (int) ingredientePosition.getY(), 52, 47);
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.carne,
@@ -45,7 +45,7 @@ public class IngredientesControl {
         if (tipoIngrediente == 2) {
             Vector2D ingredientePosition = posicion(lista.getSize());
             Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                     (int) ingredientePosition.getY(), 52, 47);
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.queso,
@@ -56,7 +56,7 @@ public class IngredientesControl {
         if (tipoIngrediente == 3) {
             Vector2D ingredientePosition = posicion(lista.getSize());
             Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                     (int) ingredientePosition.getY(), 52, 47);
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.pan,
@@ -67,7 +67,7 @@ public class IngredientesControl {
         if (tipoIngrediente == 4) {
             Vector2D ingredientePosition = posicion(lista.getSize());
             Rectangle ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
-                     (int) ingredientePosition.getY(), 52, 47);
+                    (int) ingredientePosition.getY(), 52, 47);
             Comida ingrediente = new Comida(
                     ingredientePosition,
                     AssetsG.lechuga,
@@ -97,24 +97,27 @@ public class IngredientesControl {
     public void drawIngrediente(Graphics g) {
         lista.drawIngrediente(g);
     }
+
     public ListaIngredientes getLista() {
-        
+
         return lista;
     }
-     public Rectangle Posiciones() {
-        
+
+    public Rectangle Posiciones() {
+
         return lista.valores();
     }
-     public boolean colisionConIngredientes(Rectangle playerHitbox) {
+
+    public boolean colisionConIngredientes(Rectangle playerHitbox) {
         NodoIngrediente aux = lista.getCabeza();
-        
+
         while (aux != null) {
             if (playerHitbox.intersects(aux.getIngrediente().getHitbox())) {
                 return true; // Hay colisión con un ingrediente
             }
             aux = aux.getSiguiente();
         }
-        
+
         return false; // No hay colisión con ningún ingrediente
     }
 

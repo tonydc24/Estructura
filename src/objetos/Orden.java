@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MisClases;
+package objetos;
 
 import java.awt.image.BufferedImage;
 
@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
  * @author Anthony
  */
 public class Orden {
+
     private String tipoHamburguesa;
     private int puntos;
     private int combinacion;
@@ -64,7 +65,4 @@ public class Orden {
     public void setTextura(BufferedImage textura) {
         this.textura = textura;
     }
-
-   
-  
 }
