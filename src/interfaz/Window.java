@@ -135,7 +135,7 @@ public class Window extends JFrame implements Runnable {
             controlI.generarIngrediente();
         }
         orden.generarOrdenAleatoria();
-        IngredienteF = new Rectangle(640, 200, 90, 90);
+        IngredienteF = new Rectangle(640, 200, 52, 47);
         
        
     }
@@ -147,7 +147,8 @@ public class Window extends JFrame implements Runnable {
         player.update();
         
         if (player.getHitbox().intersects(trashbin)) {
-            if (Keyboard.e) {
+            if (Keyboard.e && agarrar ==true) {
+                agarrar=false;
                 botar = true;
                 ActivationTime = System.currentTimeMillis();
                 combinacion += 1;
@@ -164,12 +165,19 @@ public class Window extends JFrame implements Runnable {
             }
         }
 
-        
+        if (agarrar==false) {
+          siguientePosicion= controlI.getPosicion();
+            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());
+            if (player.getHitbox().intersects(IngredienteF)) {
+                if (Keyboard.e) {
+                    agarrar= true;   
+                }
+             
+            }
+        }
 
     
-                 siguientePosicion= controlI.getPosicion();
-            
-            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());// Pausa de 1 segundo
+                
 
         
 
