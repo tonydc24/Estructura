@@ -154,16 +154,28 @@ public class Window extends JFrame implements Runnable {
     private void update() {//Actualiza mi juego
         keyBoard.update();
         //Actualiza/recibe los datos del teclado ejemplo el WASD
-        
+
         player.update();
-        
+        if (agarrar == false) {
+            siguientePosicion = controlI.getPosicion();
+            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());
+            if (player.getHitbox().intersects(IngredienteF)) {
+                if (Keyboard.e) {
+
+                    agarrar = true;
+                    ingrediente = controlI.extraer(siguientePosicion);
+
+                    
+                }
+
+            }
+        }
         if (player.getHitbox().intersects(trashbin)) {
-            if (Keyboard.e && agarrar ==true) {
-                agarrar=false;
+            if (Keyboard.e && agarrar == true) {
+                agarrar = false;
                 botar = true;
                 ActivationTime = System.currentTimeMillis();
-                combinacion += 1;
-                
+
             }
         }
         if (player.getHitbox().intersects(table)) {
@@ -171,28 +183,15 @@ public class Window extends JFrame implements Runnable {
                 //Guarda el momento en el run del sistema que presione la tecla 
                 ActivationTime = System.currentTimeMillis();
                 colocar = true;
-                agarrar=false;
-                combinacion+=1;
-                puntosTotal += 10;
+                agarrar = false;
+                combinacion += 1;
+                especificar += ingrediente.getIdentificador();
+                System.out.println("Combi:"+combinacion);
+                System.out.println("Espe:"+especificar);
             }
         }
 
-        if (agarrar==false) {
-          siguientePosicion= controlI.getPosicion();
-            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());
-            if (player.getHitbox().intersects(IngredienteF)) {
-                if (Keyboard.e) {
-                    
-                    agarrar= true;
-                    ingrediente = controlI.extraer(siguientePosicion);
-                    System.out.println(ingrediente.getIdentificador());
-//                    especificar = ingrediente.getIdentificador();
-                }
-             
-            }
-        }
 
-    
                 
 
         
@@ -205,18 +204,17 @@ public class Window extends JFrame implements Runnable {
             //Si el tiempo actual menos la ultima vez que genero una orden es
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
-//        if (lista.getSize() <= 3) {
-//            controlI.generarIngrediente();
-//        }
-        int resultadoOrdenTerminada = orden.ordenTerminada(combinacion, especificar, puntosTotal);
-
-        if (resultadoOrdenTerminada > 0) {
-            combinacion = 0;
-            especificar = 0;
+        if (controlI.size() <= 3) {
+            controlI.generarIngrediente();
         }
 
-        puntosTotal += resultadoOrdenTerminada;
+        int resultadoOrdenTerminada = orden.ordenTerminada(combinacion, especificar, puntosTotal);
 
+        if (resultadoOrdenTerminada > 0 || combinacion >= 4) {
+            combinacion = 0;
+            especificar = 0;
+            puntosTotal = resultadoOrdenTerminada;
+        }
         //Actualiza el juego , ejemplo cuando se mueve el player
         //o se mueve algun objeto en la banda transportadora
     }
@@ -237,18 +235,17 @@ public class Window extends JFrame implements Runnable {
         g.drawImage(AssetsG.fondo, 0, 0, null);
         g.drawImage(AssetsG.trash, 615, 440, null);
         g.drawImage(AssetsG.mesa, 110, 440, null);
+        
 
         controlI.drawIngrediente(g);
         player.draw(g);
         if (agarrar) {
-         g.drawImage(ingrediente.getTextura(),(int) player.getPosition().getX(),(int) player.getPosition().getY()+10 , null);
+         g.drawImage(ingrediente.getTextura(),(int) player.getPosition().getX()+5,(int) player.getPosition().getY()-15 , null);
         }
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.green);
-        g2d.draw(IngredienteF);
+       
         //Dibujo los items en pantalla
         g.setColor(Color.black);
-        g.setFont(new Font("Roboto", Font.BOLD, 20));
+        g.setFont(new Font("Alcubierre", Font.BOLD, 20));
         if (botar && (System.currentTimeMillis() - ActivationTime) <= mensajes) {
 
             g.drawString("BOTAR", 375, 150);
@@ -261,11 +258,25 @@ public class Window extends JFrame implements Runnable {
         } else {
             colocar = false; // Desactivar botar
         }
-
         g.setColor(Color.black);
-        g.setFont(new Font("Roboto", Font.BOLD, 12));
+        g.setFont(new Font("Alcubierre", Font.BOLD, 13));
+         g.drawString("Hamburguesa de carne : ", 2, 50);
+        g.drawString("-Pan ", 2, 75);
+        g.drawString("-Carne ", 2, 85);
+        
+        g.drawString("Hamburguesa de queso : ", 2, 125);
+        g.drawString("-Pan ", 2, 150);
+        g.drawString("-Carne ", 2, 160);
+        g.drawString("-Queso ", 2, 170);
+        
+        g.drawString("Hamburguesa de queso :  ", 2, 190);
+        g.drawString("-Pan ", 2, 215);
+        g.drawString("-Carne ", 2, 225);
+        g.drawString("-Queso ", 2, 235);
+        g.drawString("-Lechuga ", 2, 245);
+        g.setColor(Color.black);
+        g.setFont(new Font("Alcubierre", Font.BOLD, 12));
         g.drawString("" + avFps, 4, 13);
-        //sd
         // Actualizar y mostrar el temporizador en el JLabel
         elapsedTime = System.currentTimeMillis() - startTime;
         long remainingTime = timeLimit - elapsedTime;

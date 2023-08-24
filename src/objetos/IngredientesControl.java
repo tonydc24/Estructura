@@ -124,6 +124,10 @@ public class IngredientesControl {
     
     return lista.extrae(posicion);
     }
+    public int size (){
+    
+    return lista.getSize();
+    }
    
     
 //  public Vector2D getPosicion() {

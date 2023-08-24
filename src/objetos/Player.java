@@ -64,13 +64,10 @@ public class Player extends Objetos {
 
     @Override
     public void draw(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
 
         // Dibuja la textura del jugador
         g.drawImage(textura, (int) position.getX(), (int) position.getY(), null);
 
         // Dibuja el rectángulo de colisión del jugador en rojo
-        g2d.setColor(Color.RED);
-        g2d.draw(hitbox);
     }
 }

@@ -8,6 +8,7 @@ import estructuras.Cola;
 import estructuras.NodoHamburguesa;
 import graphics.AssetsG;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class OrdenControl {
@@ -15,8 +16,8 @@ public class OrdenControl {
     private Cola colaDeOrdenes;
     private int salto;
     private int inicial;
-
-    private Graphics g;
+     private Graphics g;
+    
 
     public OrdenControl() {
         colaDeOrdenes = new Cola();
@@ -56,13 +57,23 @@ public class OrdenControl {
                         tipoDeHamburguesa));
                 break;
         }
+    } 
+    public void  justPrint(){
+        NodoHamburguesa aux = colaDeOrdenes.getFrente();
+        System.out.println(aux.getOrden().getCombinacion());
     }
 
     public int ordenTerminada(int combinacion, int especificar, int puntos) {
+
         NodoHamburguesa aux = colaDeOrdenes.getFrente();
-        if (aux != null && aux.getOrden().getCombinacion() == combinacion && aux.getOrden().getEspecificar() == especificar) {
+//        System.out.println("Combinacion:"+aux.getOrden().getCombinacion());
+//        System.out.println("Especificar:"+aux.getOrden().getEspecificar());
+         BufferedImage hambur;
+        if (aux != null &&  combinacion== aux.getOrden().getCombinacion()  && aux.getOrden().getEspecificar() == especificar) {
             puntos += aux.getOrden().getPuntos();
-            g.drawImage(aux.getOrden().getTextura(), 129, 430, null);
+            System.out.println("Esto suma :"+puntos);
+            hambur=aux.getOrden().getTextura();
+            
             colaDeOrdenes.elimina();
             return puntos;
         } else {
@@ -76,7 +87,12 @@ public class OrdenControl {
     public void drawOrden(Graphics g) {
         colaDeOrdenes.drawOrdenes(g, salto, inicial);
     }
-
+    public void drawTerminada(Graphics g){
+    NodoHamburguesa aux = colaDeOrdenes.getFrente();
+    BufferedImage hambur;
+     hambur  = aux.getOrden().getTextura();
+    g.drawImage(hambur, salto, salto, null);
+    }
     public static int getRandomNumber() {
         Random random = new Random();
         return random.nextInt(3) + 1;

@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 public class ListaIngredientes {
 
     private NodoIngrediente cabeza;
+    private NodoIngrediente ultimo;
     private int size; // Variable para rastrear el tamaño de la lista
     private static final int MAXIMO_INGREDIENTES = 4;
     private NodoIngrediente ingredienteActual;
@@ -111,7 +112,7 @@ public class ListaIngredientes {
     public Vector2D obtenerSiguientePosicion() {
 
         siguientePosicion = cabeza.getIngrediente().getPosition();
-        System.out.println(siguientePosicion.getX());
+//        System.out.println(siguientePosicion.getX());
         cabeza = cabeza.getSiguiente();
 
         return siguientePosicion;
@@ -126,9 +127,7 @@ public class ListaIngredientes {
         BufferedImage imagen;
         while (i <= MAXIMO_INGREDIENTES) {
 
-            Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(Color.blue);
-            g2d.draw(aux.getIngrediente().getHitbox());
+            
             // Dibuja el rectángulo de colisión del jugador en rojo
 
             imagen = aux.getIngrediente().getTextura();
@@ -143,7 +142,7 @@ public class ListaIngredientes {
             i++;
         }
     }
-
+    
     public NodoIngrediente getCabeza() {
         return cabeza;
     }
