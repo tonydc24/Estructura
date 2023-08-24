@@ -22,12 +22,13 @@ public class IngredientesControl {
     private int salto;
     private int inicial;
     private Rectangle colision;
-    private ListaIngredientes lista;
+    private ListaIngredientes lista = new ListaIngredientes();
     private NodoIngrediente nodo;
+//    private Vector2D posicion;
 
     public IngredientesControl() {
-        lista = new ListaIngredientes();
-
+        
+        
     }
 
     public void generarIngrediente() {
@@ -35,8 +36,9 @@ public class IngredientesControl {
         Vector2D ingredientePosition;
         Rectangle ingredienteHitbox;
         Comida ingrediente;
+        
         switch(tipoIngrediente){
-            case 1 -> {
+            case 0 -> {
                 ingredientePosition = posicion(lista.getSize());
                 ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
                         (int) ingredientePosition.getY(), 52, 47);
@@ -46,7 +48,7 @@ public class IngredientesControl {
                         ingredienteHitbox, 5);
                 lista.insertar(ingrediente);
             }
-            case 2 -> {
+            case 1 -> {
                 ingredientePosition = posicion(lista.getSize());
                 ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
                         (int) ingredientePosition.getY(), 52, 47);
@@ -56,7 +58,7 @@ public class IngredientesControl {
                         ingredienteHitbox, 11);
                 lista.insertar(ingrediente);
             }
-            case 3 -> {
+            case 2 -> {
                 ingredientePosition = posicion(lista.getSize());
                 ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
                         (int) ingredientePosition.getY(), 52, 47);
@@ -66,7 +68,7 @@ public class IngredientesControl {
                         ingredienteHitbox, 7);
                 lista.insertar(ingrediente);
             }
-            case 4 -> {
+            case 3 -> {
                 ingredientePosition = posicion(lista.getSize());
                 ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
                         (int) ingredientePosition.getY(), 52, 47);
@@ -76,13 +78,17 @@ public class IngredientesControl {
                         ingredienteHitbox, 9);
                 lista.insertar(ingrediente);
             }
-            default -> System.out.println(String.format("No existe una "
+            default ->
+                System.out.println(String.format("No existe una "
                         + "implementacion para este tipo de ingrediente %s",
                         tipoIngrediente));
         }
     }
 
     public Vector2D posicion(int size) {
+       
+       
+        
         switch (size) {
             case 0 -> {
                 return new Vector2D(660, 200);
@@ -97,42 +103,44 @@ public class IngredientesControl {
                 return new Vector2D(240, 200);
             }
             case 4 -> {
+             return new Vector2D(100, 200);   
             }
             default -> {
+              return null;
             }
         }
-
-        return new Vector2D(100, 200);
-
+        
+       
     }
 
     public void drawIngrediente(Graphics g) {
         lista.drawIngrediente(g);
     }
-
-    public ListaIngredientes getLista() {
-
-        return lista;
+    public Vector2D getPosicion(){
+  
+    return lista.obtenerSiguientePosicion();
     }
-
+   
     
-
-    public boolean colisionConIngredientes(Rectangle playerHitbox) {
-        NodoIngrediente aux = lista.getCabeza();
-
-        while (aux != null) {
-            if (playerHitbox.intersects(aux.getIngrediente().getHitbox())) {
-                return true; // Hay colisión con un ingrediente
-            }
-            aux = aux.getSiguiente();
-        }
-
-        return false; // No hay colisión con ningún ingrediente
-    }
+//  public Vector2D getPosicion() {
+//    
+//            System.out.println(lista.obtenerSiguientePosicion().getX());
+//        
+////       System.out.println("Control:"+posicion.getX());
+//        return posicion;
+//    }
+//    public Vector2D getPosicion() {
+//    Vector2D siguientePosicion = lista.obtenerSiguientePosicion();
+//    if (siguientePosicion != null) {
+//        System.out.println(siguientePosicion.getX());
+//    }
+//    return siguientePosicion;
+//}
 
     public static int getRandomNumber() {
         Random random = new Random();
-        return random.nextInt(4) + 1;
+       
+        return random.nextInt(4) ;
     }
 
 }

@@ -18,9 +18,8 @@ import java.awt.Rectangle;
 
 public class Player extends Objetos {
 
-    private ListaIngredientes ingrediente;
-    private IngredientesControl ingredientesControl;
-    private boolean isHoldingObject = false;
+   
+    
 
     public Player(Vector2D position, BufferedImage textura, Rectangle hitbox) {
         super(position, textura, hitbox);
@@ -73,13 +72,5 @@ public class Player extends Objetos {
         // Dibuja el rectángulo de colisión del jugador en rojo
         g2d.setColor(Color.RED);
         g2d.draw(hitbox);
-
-        // Dibuja el ingrediente sostenido encima del jugador si lo hay
-        if (ingredientesControl != null) {
-            BufferedImage ingredienteImage = ingredientesControl.getLista().getCabeza().getIngrediente().getTextura();
-            g.drawImage(ingredienteImage, (int) position.getX(), (int) position.getY() - ingredienteImage.getHeight(), null);
-        }
-
-        // Dibuja los rectángulos de colisión de los ingredientes en azul
     }
 }

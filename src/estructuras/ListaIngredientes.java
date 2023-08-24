@@ -9,7 +9,6 @@ import objetos.Comida;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -20,106 +19,81 @@ public class ListaIngredientes {
 
     private NodoIngrediente cabeza;
     private int size; // Variable para rastrear el tamaño de la lista
-    private static final int MAXIMO_INGREDIENTES = 5;
+    private static final int MAXIMO_INGREDIENTES = 4;
     private NodoIngrediente ingredienteActual;
+    private Vector2D siguientePosicion;
 
     public ListaIngredientes() {
-        cabeza = null;
-        size = 0;
+
         ingredienteActual = cabeza;
+
     }
 
     public int getSize() {
         return size;
     }
 
-    public boolean estaLlena() {
-
-        return size >= MAXIMO_INGREDIENTES;
-    }
-
-    public void insertar(Comida ingrediente) {
-        if (!estaLlena()) {
-            // La lista ya tiene el máximo de nodos, no se puede agregar más
-
-            NodoIngrediente nuevoNodo = new NodoIngrediente(ingrediente);
-            if (cabeza == null) {
-                cabeza = nuevoNodo;
-                cabeza.setSiguiente(cabeza);
-                size = 1; // Establecer el tamaño en 1
-            } else {
-                NodoIngrediente temp = cabeza;
-                while (temp.getSiguiente() != cabeza) {
-                    temp = temp.getSiguiente();
-                }
-                temp.setSiguiente(nuevoNodo);
-                nuevoNodo.setSiguiente(cabeza);
-                size++; // Incrementar el tamaño de la lista
-            }
-        }
-    }
-
-    public void eliminar(Vector2D posicion) {
-        if (cabeza == null) {
-            // La lista está vacía, no hay nada que eliminar
-            return;
-        }
-
-        if (cabeza.getIngrediente().getPosition() == posicion) {
-            // El ingrediente a eliminar está en el primer nodo
-            if (cabeza.getSiguiente() == cabeza) {
-                // La lista solo tiene un nodo
-                cabeza = null;
-            } else {
-                NodoIngrediente temp = cabeza;
-                while (temp.getSiguiente() != cabeza) {
-                    temp = temp.getSiguiente();
-                }
-                temp.setSiguiente(cabeza.getSiguiente());
-                cabeza = cabeza.getSiguiente();
-            }
-            size--;
-            return;
-        }
-
-        NodoIngrediente temp = cabeza;
-        while (temp.getSiguiente() != cabeza) {
-            if (temp.getSiguiente().getIngrediente().getPosition() == posicion) {
-                temp.setSiguiente(temp.getSiguiente().getSiguiente());
-                size--;
-                return;
-            }
-            temp = temp.getSiguiente();
-        }
-    }
-
-    public Vector2D obtenerSiguientePosicion() {
-        if (ingredienteActual == null) {
-            return null; // No hay ingredientes en la lista
-        }
-
-        Vector2D siguientePosicion = ingredienteActual.getIngrediente().getPosition();
-        ingredienteActual = ingredienteActual.getSiguiente(); // Mover al siguiente nodo
-        System.out.println(ingredienteActual.getIngrediente().getIdentificador());
-
+    public Vector2D getSiguientePosicion() {
         return siguientePosicion;
     }
 
-    //    public Rectangle valores() {
-    //        NodoIngrediente aux = cabeza;
-    //
-    //        while (aux != null) {
-    //
-    ////            Rectangle hitbox = aux.getIngrediente().getHitbox();
-    //            System.out.println(aux.getIngrediente().getIdentificador());
-    //
-    //            aux = aux.getSiguiente(); // Avanzar al siguiente nodo
-    //
-    //        }
-    //
-    //        // Si el bucle termina sin encontrar un return, retorna null o realiza otro manejo
-    //        return null;
-    //    }
+    public void insertar(Comida ingrediente) {
+
+        // La lista ya tiene el máximo de nodos, no se puede agregar más
+        NodoIngrediente nuevoNodo = new NodoIngrediente(ingrediente);
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+            cabeza.setSiguiente(cabeza);
+
+        } else {
+            NodoIngrediente temp = cabeza;
+            while (temp.getSiguiente() != cabeza) {
+                temp = temp.getSiguiente();
+            }
+            temp.setSiguiente(nuevoNodo);
+            nuevoNodo.setSiguiente(cabeza);
+
+            // Incrementar el tamaño de la lista
+        }
+
+        size++;
+
+    }
+
+    public void elimina(Vector2D posicion) {
+
+        if (cabeza != null) {
+            if (cabeza.getIngrediente().getPosition() == posicion) {
+                cabeza = cabeza.getSiguiente();
+            } else {
+                NodoIngrediente aux = cabeza;
+                while (aux.getSiguiente() != null
+                        && aux.getSiguiente().getIngrediente().getPosition().getX() < posicion.getX()) {
+                    aux = aux.getSiguiente();
+                }
+
+                if (aux.getSiguiente() != null
+                        && aux.getSiguiente().getIngrediente().getPosition() == posicion) {
+                    aux.setSiguiente(aux.getSiguiente().getSiguiente()); // cambio las referencias
+                }
+            }
+        }
+        size--;
+    }
+
+    public Vector2D obtenerSiguientePosicion() {
+        int i = 0;
+        NodoIngrediente aux = cabeza;
+        Vector2D posicion = null;
+        while (i <= MAXIMO_INGREDIENTES) {
+            posicion=aux.getIngrediente().getPosition();
+            System.out.println(posicion.getX());
+            aux = aux.getSiguiente();
+            i++;
+        }
+        return null;
+    }
+
     public void drawIngrediente(Graphics g) {
         NodoIngrediente aux = cabeza;
         double xDouble;
@@ -127,7 +101,8 @@ public class ListaIngredientes {
 
         int i = 0;
         BufferedImage imagen;
-        while (i < getSize()) {
+        while (i <= MAXIMO_INGREDIENTES) {
+
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(Color.blue);
             g2d.draw(aux.getIngrediente().getHitbox());
@@ -141,6 +116,7 @@ public class ListaIngredientes {
             g.drawImage(imagen, (int) xDouble, (int) yDouble, null);
 
             aux = aux.getSiguiente();
+
             i++;
         }
     }

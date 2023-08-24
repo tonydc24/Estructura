@@ -52,17 +52,15 @@ public class Cola {
     }
 
     public NodoHamburguesa elimina() {
-        if (!estaVacia()) {
-            NodoHamburguesa nodoEliminado = frente;
+        NodoHamburguesa aux = frente;
+
+        if (frente != null) {
             frente = frente.getSiguiente();
-            nodoEliminado.setSiguiente(null);
-            if (frente == null) {
-                ultimo = null;
-            }
+            aux.setSiguiente(null);
+
             size--;
-            return nodoEliminado;
         }
-        return null;
+        return aux;
     }
 
     public void drawOrdenes(Graphics g, int x, int y) {

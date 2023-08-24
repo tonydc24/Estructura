@@ -11,11 +11,17 @@
         </group>
         <group>
             <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/objetos/Player.java</file>
+            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/graphics/Loader.java</file>
+            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/objetos/Objetos.java</file>
+            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/graphics/Sound.java</file>
+            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/objetos/Orden.java</file>
+            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/objetos/Comida.java</file>
+            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/estructuras/NodoIngrediente.java</file>
             <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/estructuras/ListaIngredientes.java</file>
             <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/input/Keyboard.java</file>
             <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/objetos/IngredientesControl.java</file>
-            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/estructuras/ListaMesa.java</file>
             <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/estructuras/NodoHamburguesa.java</file>
+            <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/Math/Vector2D.java</file>
             <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/interfaz/Window.java</file>
             <file>file:/H:/PROJECTS/Estructura/Estructura_Proyecto/src/objetos/OrdenControl.java</file>
         </group>

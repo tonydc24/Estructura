@@ -5,13 +5,11 @@
 package interfaz;
 
 import estructuras.ListaIngredientes;
-import objetos.Comida;
-import objetos.Player;
+import objetos.*;
 import Math.Vector2D;
-import objetos.IngredientesControl;
-import objetos.OrdenControl;
-import graphics.AssetsG;
-import graphics.Sound;
+import estructuras.*;
+import objetos.*;
+import graphics.*;
 import input.Keyboard;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -50,22 +48,19 @@ public class Window extends JFrame implements Runnable {
     private Player player;
     private Rectangle trashbin;
     private Rectangle table;
-    private Comida comida;
     private Keyboard keyBoard;
     private Sound background;
-        private int currentX = 100; // Coordenada X actual del rectángulo
-    private int speed = 2; // Velocidad de movimiento
-    private int[] targetXPositions = {100, 200, 300}; // Coordenadas X objetivo
-    private int targetIndex = 0;
+        
 
     private Rectangle IngredienteF;
     private Vector2D siguientePosicion;////////////////////////////////////
-
+    private NodoIngrediente nodo;
 //Estructura cinta
-    private IngredientesControl ingredientes;
+    private IngredientesControl controlI;
     private ListaIngredientes lista;
     //Estructura ordenes / Tiempos
     private OrdenControl orden;
+    private Cola cola;
     private long lastOrderTime = System.currentTimeMillis();
     private static final long intervalOrden = 20000;
     private static final long mensajes = 500;
@@ -120,7 +115,7 @@ public class Window extends JFrame implements Runnable {
         startTime = System.currentTimeMillis();
         orden = new OrdenControl();
         lista = new ListaIngredientes();
-        ingredientes = new IngredientesControl();
+        controlI = new IngredientesControl();
         Vector2D playerPosition = new Vector2D(400, 300);
         Rectangle playerHitbox = new Rectangle(
                 (int) playerPosition.getX(),
@@ -134,25 +129,29 @@ public class Window extends JFrame implements Runnable {
 
         background = new Sound(AssetsG.backgroundMusic);
         background.play();
+
         for (int i = 0; i < 5; i++) {
-            ingredientes.generarIngrediente();
+
+            controlI.generarIngrediente();
         }
         orden.generarOrdenAleatoria();
-            IngredienteF = new Rectangle(640, 200, 90, 90); 
-             siguientePosicion = lista.obtenerSiguientePosicion();
+        IngredienteF = new Rectangle(640, 200, 90, 90);
+        
+       
     }
 
     private void update() {//Actualiza mi juego
         keyBoard.update();
         //Actualiza/recibe los datos del teclado ejemplo el WASD
-
+        
         player.update();
-
+        
         if (player.getHitbox().intersects(trashbin)) {
             if (Keyboard.e) {
                 botar = true;
                 ActivationTime = System.currentTimeMillis();
                 combinacion += 1;
+                
             }
         }
         if (player.getHitbox().intersects(table)) {
@@ -160,17 +159,17 @@ public class Window extends JFrame implements Runnable {
                 //Guarda el momento en el run del sistema que presione la tecla 
                 ActivationTime = System.currentTimeMillis();
                 colocar = true;
+                
                 puntosTotal += 10;
             }
         }
-        
-        Vector2D siguientePosicion = lista.obtenerSiguientePosicion();
+
+        siguientePosicion= controlI.getPosicion();
         if (siguientePosicion != null) {
-            IngredienteF.x = (int) siguientePosicion.getX(); // Actualizar la posición X del rectángulo
-            IngredienteF.y = (int) siguientePosicion.getY(); // Actualizar la posición Y del rectángulo
+//            System.out.println("Hola");
+            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY()); // Actualizar la posición Y del rectángulo
         }
 
-       
         currentTime = System.currentTimeMillis();//Agarrar tiempo actual
         if (currentTime - lastOrderTime >= intervalOrden) {
             orden.generarOrdenAleatoria();
@@ -179,9 +178,9 @@ public class Window extends JFrame implements Runnable {
             //Si el tiempo actual menos la ultima vez que genero una orden es
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
-        if (lista.getSize() <= 3) {
-            ingredientes.generarIngrediente();
-        }
+//        if (lista.getSize() <= 3) {
+//            controlI.generarIngrediente();
+//        }
         int resultadoOrdenTerminada = orden.ordenTerminada(combinacion, especificar, puntosTotal);
 
         if (resultadoOrdenTerminada > 0) {
@@ -212,7 +211,7 @@ public class Window extends JFrame implements Runnable {
         g.drawImage(AssetsG.trash, 615, 440, null);
         g.drawImage(AssetsG.mesa, 110, 440, null);
 
-        ingredientes.drawIngrediente(g);
+        controlI.drawIngrediente(g);
         player.draw(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.green);
@@ -322,4 +321,7 @@ public class Window extends JFrame implements Runnable {
             e.printStackTrace();
         }
     }
+    
+    
+   
 }

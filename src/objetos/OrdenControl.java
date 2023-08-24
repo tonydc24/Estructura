@@ -70,7 +70,9 @@ public class OrdenControl {
             return puntos = 0;
         }
     }
-
+    public void eliminar (){
+    colaDeOrdenes.elimina();
+    }
     public void drawOrden(Graphics g) {
         colaDeOrdenes.drawOrdenes(g, salto, inicial);
     }
