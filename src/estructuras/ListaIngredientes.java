@@ -21,7 +21,8 @@ public class ListaIngredientes {
     private NodoIngrediente cabeza;
     private int size; // Variable para rastrear el tamaño de la lista
     private static final int MAXIMO_INGREDIENTES = 5;
-    private NodoIngrediente ingredienteActual ;
+    private NodoIngrediente ingredienteActual;
+
     public ListaIngredientes() {
         cabeza = null;
         size = 0;
@@ -92,7 +93,7 @@ public class ListaIngredientes {
         }
     }
 
-   public Vector2D obtenerSiguientePosicion() {
+    public Vector2D obtenerSiguientePosicion() {
         if (ingredienteActual == null) {
             return null; // No hay ingredientes en la lista
         }
@@ -104,21 +105,21 @@ public class ListaIngredientes {
         return siguientePosicion;
     }
 
-//    public Rectangle valores() {
-//        NodoIngrediente aux = cabeza;
-//
-//        while (aux != null) {
-//
-////            Rectangle hitbox = aux.getIngrediente().getHitbox();
-//            System.out.println(aux.getIngrediente().getIdentificador());
-//
-//            aux = aux.getSiguiente(); // Avanzar al siguiente nodo
-//
-//        }
-//
-//        // Si el bucle termina sin encontrar un return, retorna null o realiza otro manejo
-//        return null;
-//    }
+    //    public Rectangle valores() {
+    //        NodoIngrediente aux = cabeza;
+    //
+    //        while (aux != null) {
+    //
+    ////            Rectangle hitbox = aux.getIngrediente().getHitbox();
+    //            System.out.println(aux.getIngrediente().getIdentificador());
+    //
+    //            aux = aux.getSiguiente(); // Avanzar al siguiente nodo
+    //
+    //        }
+    //
+    //        // Si el bucle termina sin encontrar un return, retorna null o realiza otro manejo
+    //        return null;
+    //    }
     public void drawIngrediente(Graphics g) {
         NodoIngrediente aux = cabeza;
         double xDouble;

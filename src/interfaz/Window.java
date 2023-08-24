@@ -164,10 +164,11 @@ public class Window extends JFrame implements Runnable {
             }
         }
         
-          if (siguientePosicion != null) {
-            IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());
+        Vector2D siguientePosicion = lista.obtenerSiguientePosicion();
+        if (siguientePosicion != null) {
+            IngredienteF.x = (int) siguientePosicion.getX(); // Actualizar la posición X del rectángulo
+            IngredienteF.y = (int) siguientePosicion.getY(); // Actualizar la posición Y del rectángulo
         }
-    
 
        
         currentTime = System.currentTimeMillis();//Agarrar tiempo actual
