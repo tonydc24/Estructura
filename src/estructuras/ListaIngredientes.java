@@ -59,13 +59,13 @@ public class ListaIngredientes {
         }
     }
 
-    public void eliminar(Comida ingrediente) {
+    public void eliminar(Vector2D posicion) {
         if (cabeza == null) {
             // La lista está vacía, no hay nada que eliminar
             return;
         }
 
-        if (cabeza.getIngrediente() == ingrediente) {
+        if (cabeza.getIngrediente().getPosition() == posicion) {
             // El ingrediente a eliminar está en el primer nodo
             if (cabeza.getSiguiente() == cabeza) {
                 // La lista solo tiene un nodo
@@ -84,7 +84,7 @@ public class ListaIngredientes {
 
         NodoIngrediente temp = cabeza;
         while (temp.getSiguiente() != cabeza) {
-            if (temp.getSiguiente().getIngrediente() == ingrediente) {
+            if (temp.getSiguiente().getIngrediente().getPosition() == posicion) {
                 temp.setSiguiente(temp.getSiguiente().getSiguiente());
                 size--;
                 return;
