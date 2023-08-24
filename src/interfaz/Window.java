@@ -8,7 +8,6 @@ import estructuras.ListaIngredientes;
 import objetos.*;
 import Math.Vector2D;
 import estructuras.*;
-import objetos.*;
 import graphics.*;
 import input.Keyboard;
 import java.awt.Canvas;
@@ -16,7 +15,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +49,6 @@ public class Window extends JFrame implements Runnable {
     private Rectangle table;
     private Keyboard keyBoard;
     private Sound background;
-        
 
     private Rectangle IngredienteF;
     private Vector2D siguientePosicion;////////////////////////////////////
@@ -147,8 +144,7 @@ public class Window extends JFrame implements Runnable {
         }
         orden.generarOrdenAleatoria();
         IngredienteF = new Rectangle(640, 200, 52, 47);
-        
-       
+
     }
 
     private void update() {//Actualiza mi juego
@@ -165,7 +161,6 @@ public class Window extends JFrame implements Runnable {
                     agarrar = true;
                     ingrediente = controlI.extraer(siguientePosicion);
 
-                    
                 }
 
             }
@@ -186,15 +181,10 @@ public class Window extends JFrame implements Runnable {
                 agarrar = false;
                 combinacion += 1;
                 especificar += ingrediente.getIdentificador();
-                System.out.println("Combi:"+combinacion);
-                System.out.println("Espe:"+especificar);
+                System.out.println("Combi:" + combinacion);
+                System.out.println("Espe:" + especificar);
             }
         }
-
-
-                
-
-        
 
         currentTime = System.currentTimeMillis();//Agarrar tiempo actual
         if (currentTime - lastOrderTime >= intervalOrden) {
@@ -235,14 +225,13 @@ public class Window extends JFrame implements Runnable {
         g.drawImage(AssetsG.fondo, 0, 0, null);
         g.drawImage(AssetsG.trash, 615, 440, null);
         g.drawImage(AssetsG.mesa, 110, 440, null);
-        
 
         controlI.drawIngrediente(g);
         player.draw(g);
         if (agarrar) {
-         g.drawImage(ingrediente.getTextura(),(int) player.getPosition().getX()+5,(int) player.getPosition().getY()-15 , null);
+            g.drawImage(ingrediente.getTextura(), (int) player.getPosition().getX() + 5, (int) player.getPosition().getY() - 15, null);
         }
-       
+
         //Dibujo los items en pantalla
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 20));
@@ -260,15 +249,15 @@ public class Window extends JFrame implements Runnable {
         }
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 13));
-         g.drawString("Hamburguesa de carne : ", 2, 50);
+        g.drawString("Hamburguesa de carne : ", 2, 50);
         g.drawString("-Pan ", 2, 75);
         g.drawString("-Carne ", 2, 85);
-        
+
         g.drawString("Hamburguesa de queso : ", 2, 125);
         g.drawString("-Pan ", 2, 150);
         g.drawString("-Carne ", 2, 160);
         g.drawString("-Queso ", 2, 170);
-        
+
         g.drawString("Hamburguesa de queso :  ", 2, 190);
         g.drawString("-Pan ", 2, 215);
         g.drawString("-Carne ", 2, 225);
@@ -362,7 +351,5 @@ public class Window extends JFrame implements Runnable {
             e.printStackTrace();
         }
     }
-    
-    
-   
+
 }

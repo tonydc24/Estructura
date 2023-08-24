@@ -6,9 +6,7 @@ package estructuras;
 
 import Math.Vector2D;
 import objetos.Comida;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -81,33 +79,33 @@ public class ListaIngredientes {
         }
         size--;
     }
-    public Comida extrae(Vector2D posicion) {
-    NodoIngrediente aux = cabeza;
-    NodoIngrediente previo = null;
-    
-    while (aux != null) {
-        Vector2D ingredientePosicion = aux.getIngrediente().getPosition();
-        
-        if (ingredientePosicion.equals(posicion)) {
-            Comida ingrediente = aux.getIngrediente();
-            
-            if (previo == null) {
-                cabeza = aux.getSiguiente(); // Si es el primer nodo
-            } else {
-                previo.setSiguiente(aux.getSiguiente()); // Conecta el nodo previo con el siguiente
-            }
-            
-            size--; // Decrementa el tamaño de la lista
-            return ingrediente; // Devuelve el objeto Comida
-        }
-        
-        previo = aux;
-        aux = aux.getSiguiente(); // Mover al siguiente nodo
-    }
-    
-    return null; // Si no se encuentra ninguna coincidencia
-}
 
+    public Comida extrae(Vector2D posicion) {
+        NodoIngrediente aux = cabeza;
+        NodoIngrediente previo = null;
+
+        while (aux != null) {
+            Vector2D ingredientePosicion = aux.getIngrediente().getPosition();
+
+            if (ingredientePosicion.equals(posicion)) {
+                Comida ingrediente = aux.getIngrediente();
+
+                if (previo == null) {
+                    cabeza = aux.getSiguiente(); // Si es el primer nodo
+                } else {
+                    previo.setSiguiente(aux.getSiguiente()); // Conecta el nodo previo con el siguiente
+                }
+
+                size--; // Decrementa el tamaño de la lista
+                return ingrediente; // Devuelve el objeto Comida
+            }
+
+            previo = aux;
+            aux = aux.getSiguiente(); // Mover al siguiente nodo
+        }
+
+        return null; // Si no se encuentra ninguna coincidencia
+    }
 
     public Vector2D obtenerSiguientePosicion() {
 
@@ -127,9 +125,7 @@ public class ListaIngredientes {
         BufferedImage imagen;
         while (i <= MAXIMO_INGREDIENTES) {
 
-            
             // Dibuja el rectángulo de colisión del jugador en rojo
-
             imagen = aux.getIngrediente().getTextura();
             xDouble = aux.getIngrediente().getPosition().getX();
             yDouble = aux.getIngrediente().getPosition().getY();
@@ -142,7 +138,7 @@ public class ListaIngredientes {
             i++;
         }
     }
-    
+
     public NodoIngrediente getCabeza() {
         return cabeza;
     }

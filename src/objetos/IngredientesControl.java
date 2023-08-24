@@ -27,8 +27,7 @@ public class IngredientesControl {
 //    private Vector2D posicion;
 
     public IngredientesControl() {
-        
-        
+
     }
 
     public void generarIngrediente() {
@@ -36,8 +35,8 @@ public class IngredientesControl {
         Vector2D ingredientePosition;
         Rectangle ingredienteHitbox;
         Comida ingrediente;
-        
-        switch(tipoIngrediente){
+
+        switch (tipoIngrediente) {
             case 0 -> {
                 ingredientePosition = posicion(lista.getSize());
                 ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
@@ -86,9 +85,7 @@ public class IngredientesControl {
     }
 
     public Vector2D posicion(int size) {
-       
-       
-        
+
         switch (size) {
             case 0 -> {
                 return new Vector2D(660, 200);
@@ -103,33 +100,34 @@ public class IngredientesControl {
                 return new Vector2D(240, 200);
             }
             case 4 -> {
-             return new Vector2D(100, 200);   
+                return new Vector2D(100, 200);
             }
             default -> {
-              return null;
+                return null;
             }
         }
-        
-       
+
     }
 
     public void drawIngrediente(Graphics g) {
         lista.drawIngrediente(g);
     }
-    public Vector2D getPosicion(){
-  
-    return lista.obtenerSiguientePosicion();
+
+    public Vector2D getPosicion() {
+
+        return lista.obtenerSiguientePosicion();
     }
-    public Comida extraer (Vector2D posicion){
-    
-    return lista.extrae(posicion);
+
+    public Comida extraer(Vector2D posicion) {
+
+        return lista.extrae(posicion);
     }
-    public int size (){
-    
-    return lista.getSize();
+
+    public int size() {
+
+        return lista.getSize();
     }
-   
-    
+
 //  public Vector2D getPosicion() {
 //    
 //            System.out.println(lista.obtenerSiguientePosicion().getX());
@@ -144,11 +142,10 @@ public class IngredientesControl {
 //    }
 //    return siguientePosicion;
 //}
-
     public static int getRandomNumber() {
         Random random = new Random();
-       
-        return random.nextInt(4) ;
+
+        return random.nextInt(4);
     }
 
 }

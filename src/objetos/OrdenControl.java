@@ -16,8 +16,7 @@ public class OrdenControl {
     private Cola colaDeOrdenes;
     private int salto;
     private int inicial;
-     private Graphics g;
-    
+    private Graphics g;
 
     public OrdenControl() {
         colaDeOrdenes = new Cola();
@@ -57,8 +56,9 @@ public class OrdenControl {
                         tipoDeHamburguesa));
                 break;
         }
-    } 
-    public void  justPrint(){
+    }
+
+    public void justPrint() {
         NodoHamburguesa aux = colaDeOrdenes.getFrente();
         System.out.println(aux.getOrden().getCombinacion());
     }
@@ -68,12 +68,12 @@ public class OrdenControl {
         NodoHamburguesa aux = colaDeOrdenes.getFrente();
 //        System.out.println("Combinacion:"+aux.getOrden().getCombinacion());
 //        System.out.println("Especificar:"+aux.getOrden().getEspecificar());
-         BufferedImage hambur;
-        if (aux != null &&  combinacion== aux.getOrden().getCombinacion()  && aux.getOrden().getEspecificar() == especificar) {
+        BufferedImage hambur;
+        if (aux != null && combinacion == aux.getOrden().getCombinacion() && aux.getOrden().getEspecificar() == especificar) {
             puntos += aux.getOrden().getPuntos();
-            System.out.println("Esto suma :"+puntos);
-            hambur=aux.getOrden().getTextura();
-            
+            System.out.println("Esto suma :" + puntos);
+            hambur = aux.getOrden().getTextura();
+
             colaDeOrdenes.elimina();
             return puntos;
         } else {
@@ -81,18 +81,22 @@ public class OrdenControl {
             return puntos = 0;
         }
     }
-    public void eliminar (){
-    colaDeOrdenes.elimina();
+
+    public void eliminar() {
+        colaDeOrdenes.elimina();
     }
+
     public void drawOrden(Graphics g) {
         colaDeOrdenes.drawOrdenes(g, salto, inicial);
     }
-    public void drawTerminada(Graphics g){
-    NodoHamburguesa aux = colaDeOrdenes.getFrente();
-    BufferedImage hambur;
-     hambur  = aux.getOrden().getTextura();
-    g.drawImage(hambur, salto, salto, null);
+
+    public void drawTerminada(Graphics g) {
+        NodoHamburguesa aux = colaDeOrdenes.getFrente();
+        BufferedImage hambur;
+        hambur = aux.getOrden().getTextura();
+        g.drawImage(hambur, salto, salto, null);
     }
+
     public static int getRandomNumber() {
         Random random = new Random();
         return random.nextInt(3) + 1;
