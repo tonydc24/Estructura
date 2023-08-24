@@ -120,6 +120,10 @@ public class IngredientesControl {
   
     return lista.obtenerSiguientePosicion();
     }
+    public Comida extraer (Vector2D posicion){
+    
+    return lista.extrae(posicion);
+    }
    
     
 //  public Vector2D getPosicion() {

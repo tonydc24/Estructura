@@ -46,6 +46,7 @@ public class Window extends JFrame implements Runnable {
     private int avFps = fps;
     //
     private Player player;
+    private Comida ingrediente;
     private Rectangle trashbin;
     private Rectangle table;
     private Keyboard keyBoard;
@@ -124,6 +125,16 @@ public class Window extends JFrame implements Runnable {
         player = new Player(playerPosition,
                 AssetsG.down,
                 playerHitbox);
+
+        Rectangle ingredienteHitbox;
+        Vector2D ingredientePosition = new Vector2D(0, 0);
+        ingredienteHitbox = new Rectangle((int) ingredientePosition.getX(),
+                (int) ingredientePosition.getY(), 52, 47);
+        ingrediente = new Comida(
+                ingredientePosition,
+                AssetsG.lechuga,
+                ingredienteHitbox, 9);
+
         trashbin = new Rectangle(615, 440, 90, 90);
         table = new Rectangle(110, 440, 90, 90);
 
@@ -160,7 +171,8 @@ public class Window extends JFrame implements Runnable {
                 //Guarda el momento en el run del sistema que presione la tecla 
                 ActivationTime = System.currentTimeMillis();
                 colocar = true;
-                
+                agarrar=false;
+                combinacion+=1;
                 puntosTotal += 10;
             }
         }
@@ -170,7 +182,11 @@ public class Window extends JFrame implements Runnable {
             IngredienteF.setLocation((int) siguientePosicion.getX(), (int) siguientePosicion.getY());
             if (player.getHitbox().intersects(IngredienteF)) {
                 if (Keyboard.e) {
-                    agarrar= true;   
+                    
+                    agarrar= true;
+                    ingrediente = controlI.extraer(siguientePosicion);
+                    System.out.println(ingrediente.getIdentificador());
+//                    especificar = ingrediente.getIdentificador();
                 }
              
             }
@@ -224,6 +240,9 @@ public class Window extends JFrame implements Runnable {
 
         controlI.drawIngrediente(g);
         player.draw(g);
+        if (agarrar) {
+         g.drawImage(ingrediente.getTextura(),(int) player.getPosition().getX(),(int) player.getPosition().getY()+10 , null);
+        }
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.green);
         g2d.draw(IngredienteF);

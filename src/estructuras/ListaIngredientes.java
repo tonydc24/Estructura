@@ -80,16 +80,40 @@ public class ListaIngredientes {
         }
         size--;
     }
+    public Comida extrae(Vector2D posicion) {
+    NodoIngrediente aux = cabeza;
+    NodoIngrediente previo = null;
+    
+    while (aux != null) {
+        Vector2D ingredientePosicion = aux.getIngrediente().getPosition();
+        
+        if (ingredientePosicion.equals(posicion)) {
+            Comida ingrediente = aux.getIngrediente();
+            
+            if (previo == null) {
+                cabeza = aux.getSiguiente(); // Si es el primer nodo
+            } else {
+                previo.setSiguiente(aux.getSiguiente()); // Conecta el nodo previo con el siguiente
+            }
+            
+            size--; // Decrementa el tamaño de la lista
+            return ingrediente; // Devuelve el objeto Comida
+        }
+        
+        previo = aux;
+        aux = aux.getSiguiente(); // Mover al siguiente nodo
+    }
+    
+    return null; // Si no se encuentra ninguna coincidencia
+}
+
 
     public Vector2D obtenerSiguientePosicion() {
-
-       
-       
 
         siguientePosicion = cabeza.getIngrediente().getPosition();
         System.out.println(siguientePosicion.getX());
         cabeza = cabeza.getSiguiente();
-        
+
         return siguientePosicion;
     }
 
