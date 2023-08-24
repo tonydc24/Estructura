@@ -249,16 +249,16 @@ public class Window extends JFrame implements Runnable {
         }
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 13));
-        g.drawString("Hamburguesa de carne : ", 2, 50);
+        g.drawString("Hamburguesa de carne: ", 2, 50);
         g.drawString("-Pan ", 2, 75);
         g.drawString("-Carne ", 2, 85);
 
-        g.drawString("Hamburguesa de queso : ", 2, 125);
+        g.drawString("Hamburguesa de queso: ", 2, 125);
         g.drawString("-Pan ", 2, 150);
         g.drawString("-Carne ", 2, 160);
         g.drawString("-Queso ", 2, 170);
 
-        g.drawString("Hamburguesa de queso :  ", 2, 190);
+        g.drawString("Hamburguesa clasica:  ", 2, 190);
         g.drawString("-Pan ", 2, 215);
         g.drawString("-Carne ", 2, 225);
         g.drawString("-Queso ", 2, 235);
