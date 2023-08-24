@@ -156,7 +156,7 @@ public class Window extends JFrame implements Runnable {
             }
         }
         if (player.getHitbox().intersects(table)) {
-            if (Keyboard.e) {
+            if (Keyboard.e && agarrar == true) {
                 //Guarda el momento en el run del sistema que presione la tecla 
                 ActivationTime = System.currentTimeMillis();
                 colocar = true;
