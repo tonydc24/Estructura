@@ -23,6 +23,11 @@ public class Sound {
         clip.setFramePosition(0);
         clip.start();
     }
+    
+    public void loop() {
+        clip.setFramePosition(0);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+    }
 
     public void stop() {
         clip.stop();
