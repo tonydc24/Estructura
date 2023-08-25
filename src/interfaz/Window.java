@@ -134,7 +134,7 @@ public class Window extends JFrame implements Runnable {
         table = new Rectangle(110, 440, 90, 90);
 
         background = new Sound(AssetsG.backgroundMusic);
-        background.play();
+        background.loop();
 
         for (int i = 0; i < 5; i++) {
             System.out.println(i);
