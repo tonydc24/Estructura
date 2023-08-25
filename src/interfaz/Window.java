@@ -199,14 +199,17 @@ public class Window extends JFrame implements Runnable {
             }
         }
 
-        int resultadoOrdenTerminada = orden.ordenTerminada(combinacion, especificar, puntosTotal);
+        int resultadoOrdenTerminada = orden.ordenTerminada(
+                combinacion,
+                especificar,
+                puntosTotal);
 
         if (resultadoOrdenTerminada > 0 || combinacion >= 4) {
             combinacion = 0;
             especificar = 0;
             puntosTotal += resultadoOrdenTerminada;
-            ordenlista=true;
-            
+            ordenlista = true;
+
         }
         //Actualiza el juego , ejemplo cuando se mueve el player
         //o se mueve algun objeto en la banda transportadora
@@ -234,7 +237,9 @@ public class Window extends JFrame implements Runnable {
         controlI.drawIngrediente(g);
         player.draw(g);
         if (agarrar) {
-            g.drawImage(ingrediente.getTextura(), (int) player.getPosition().getX() + 5, (int) player.getPosition().getY() - 15, null);
+            g.drawImage(ingrediente.getTextura(), 
+                    (int) player.getPosition().getX() + 5, 
+                    (int) player.getPosition().getY() - 15, null);
         }
         
         //Dibujo los items en pantalla
