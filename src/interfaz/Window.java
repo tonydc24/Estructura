@@ -63,7 +63,7 @@ public class Window extends JFrame implements Runnable {
     //Contador Juego
     private long startTime;
     private long elapsedTime;
-    private long timeLimit = 2 * 60 * 1000;
+    private long timeLimit = 5 * 60 * 1000;
     private long currentTime;
     private String timeFormatted;
     //Puntos
@@ -192,9 +192,11 @@ public class Window extends JFrame implements Runnable {
             //Si el tiempo actual menos la ultima vez que genero una orden es
             //mayor a 20 o sea el intervalo , genera una nueva orden
         }
-     
-        if (controlI.size() <= 3) {
-            controlI.generarIngrediente();
+
+        if (controlI.size() == 3) {
+            for (int i = 0; i < 1; i++) {
+                controlI.generarIngrediente();
+            }
         }
 
         int resultadoOrdenTerminada = orden.ordenTerminada(combinacion, especificar, puntosTotal);
@@ -226,7 +228,9 @@ public class Window extends JFrame implements Runnable {
         g.drawImage(AssetsG.fondo, 0, 0, null);
         g.drawImage(AssetsG.trash, 615, 440, null);
         g.drawImage(AssetsG.mesa, 110, 440, null);
-
+         if (ordenlista==true) {
+           orden.drawTerminada(g);
+        }
         controlI.drawIngrediente(g);
         player.draw(g);
         if (agarrar) {
@@ -248,9 +252,7 @@ public class Window extends JFrame implements Runnable {
         } else {
             colocar = false; // Desactivar botar
         }
-        if (ordenlista==true) {
-           orden.drawTerminada(g);
-        }
+       
         g.setColor(Color.black);
         g.setFont(new Font("Alcubierre", Font.BOLD, 13));
         g.drawString("FPS:"+fps, 2, 559);
@@ -324,7 +326,7 @@ public class Window extends JFrame implements Runnable {
         thread = new Thread(this);
         thread.start();//Inicia el hilo run()
         running = true;//Permite iniciar el booleano que inicia el juego
-        Timer timer = new Timer(120000, new ActionListener() {
+        Timer timer = new Timer(300000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
