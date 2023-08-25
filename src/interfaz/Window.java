@@ -63,7 +63,7 @@ public class Window extends JFrame implements Runnable {
     //Contador Juego
     private long startTime;
     private long elapsedTime;
-    private long timeLimit = 2 * 60 * 1000;
+    private long timeLimit = 5 * 60 * 1000;
     private long currentTime;
     private String timeFormatted;
     //Puntos
